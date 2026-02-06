@@ -7,9 +7,53 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #fdf6f0;
+  background-color: #fdf6f8;
   margin: 0;
+  padding: 0;
 }
+
+.aba {
+  display: none;
+  padding: 20px;
+}
+
+.aba.ativa {
+  display: block;
+}
+
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;   /* 👈 controla o tamanho */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #f2b6c6; /* rosa bb */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+</style>
+
 
 header {
   background: #f4c2c2;
