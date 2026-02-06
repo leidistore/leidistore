@@ -1,168 +1,159 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <title>Leidi Store</title>
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f1eb;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fdf6f0;
+  margin: 0;
 }
 
 header {
-    background-color: #f3c6cf;
-    padding: 20px;
-    text-align: center;
+  background: #f4c2c2;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-header h1 {
-    margin: 0;
-    color: #5a3a3a;
+.menu {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+  background: #f7e3d0;
 }
 
-section {
-    padding: 20px;
+.menu button {
+  border: none;
+  background: #f4c2c2;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
-h2 {
-    border-bottom: 2px solid #e0b4b4;
-    color: #5a3a3a;
+.aba {
+  display: none;
+  padding: 15px;
 }
 
-h3 {
-    color: #7a4a4a;
-    margin-top: 20px;
+.aba.ativa {
+  display: block;
 }
 
 .produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-.card {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
 .card img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card p {
+  text-align: center;
+  margin: 5px 0;
+  font-weight: bold;
 }
 
 .btn {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 8px 12px;
-    background: #e0b4b4;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+  display: block;
+  text-align: center;
+  background: #f4c2c2;
+  color: black;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Leidi Store</h1>
-    <p>Lingerie • Moda Íntima • Semi Joias • Beleza</p>
-</header>
+<header>Leidi Store</header>
 
-<!-- LINGERIE -->
-<section>
-<h2>Calcinha Fio</h2>
-<div class="produtos"><div class="card"><img src=""><p>Produto</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<div class="menu">
+  <button onclick="mostrar('conjunto')">Conjunto Lingerie</button>
+  <button onclick="mostrar('calcinha')">Calcinha</button>
+  <button onclick="mostrar('babydoll')">Baby Doll</button>
+  <button onclick="mostrar('plus')">Plus Size</button>
+  <button onclick="mostrar('top')">Top</button>
+  <button onclick="mostrar('cueca')">Cuecas</button>
+  <button onclick="mostrar('meias')">Meias</button>
+  <button onclick="mostrar('semijoias')">Semi Joias</button>
+</div>
+
+<section id="conjunto" class="aba ativa">
+  <h2>Conjunto Lingerie</h2>
+  <div class="produtos">
+    <!-- fotos de conjuntos aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Calcinha Normal</h2>
-<div class="produtos"><div class="card"><img src=""><p>Produto</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="calcinha" class="aba">
+  <h2>Calcinha</h2>
+  <div class="produtos">
+    <!-- fotos de calcinha aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Conjunto Lingerie</h2>
-<div class="card"><img src="IMG_4758.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4759.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4760.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4761.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4762.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4763.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4764.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4765.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4766.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4768.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4769.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4770.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4771.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4772.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4773.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4774.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4775.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4776.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
+<section id="babydoll" class="aba">
+  <h2>Baby Doll</h2>
+  <div class="produtos">
+    <!-- fotos de baby doll aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Top</h2>
-<div class="produtos"><div class="card"><img src=""><p>Top Feminino</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="plus" class="aba">
+  <h2>Plus Size</h2>
+  <div class="produtos">
+    <!-- fotos plus size aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Cuecas Adulto</h2>
-<div class="produtos"><div class="card"><img src=""><p>Cueca Adulto</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="top" class="aba">
+  <h2>Top</h2>
+  <div class="produtos">
+    <!-- fotos de top aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Cuecas Infantil</h2>
-<div class="produtos"><div class="card"><img src=""><p>Cueca Infantil</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="cueca" class="aba">
+  <h2>Cuecas Adulto e Infantil</h2>
+  <div class="produtos">
+    <!-- fotos de cuecas aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Meias</h2>
-<div class="produtos"><div class="card"><img src=""><p>Meias</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="meias" class="aba">
+  <h2>Meias</h2>
+  <div class="produtos">
+    <!-- fotos de meias aqui -->
+  </div>
 </section>
 
-<section>
-<h2>Roupas de Dormir</h2>
-<h3>Baby Doll</h3>
-<div class="produtos"><div class="card"><img src=""><p>Baby Doll</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Camisola</h3>
-<div class="produtos"><div class="card"><img src=""><p>Camisola</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
+<section id="semijoias" class="aba">
+  <h2>Semi Joias</h2>
+  <div class="produtos">
+    <!-- fotos de semi joias aqui -->
+  </div>
 </section>
 
-<!-- SEMI JOIAS -->
-<section>
-<h2>💎 Semi Joias</h2>
-
-<h3>Relógios à Prova d'Água</h3>
-<div class="produtos"><div class="card"><img src=""><p>Relógio</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Colares</h3>
-<div class="produtos"><div class="card"><img src=""><p>Colar</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Conjunto de Colares</h3>
-<div class="produtos"><div class="card"><img src=""><p>Conjunto</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Brincos</h3>
-<div class="produtos"><div class="card"><img src=""><p>Brinco</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Pulseiras</h3>
-<div class="produtos"><div class="card"><img src=""><p>Pulseira</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-
-<h3>Acessórios</h3>
-<div class="produtos"><div class="card"><img src=""><p>Acessório</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-</section>
-
-<!-- PLUS SIZE -->
-<section>
-<h2>⭐ Plus Size</h2>
-<div class="produtos"><div class="card"><img src=""><p>Produto Plus Size</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div></div>
-</section>
+<script>
+function mostrar(id) {
+  document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
+}
+</script>
 
 </body>
 </html>
