@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Leidi Store</title>
@@ -7,53 +7,9 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  background-color: #fdf6f8;
   margin: 0;
-  padding: 0;
+  background: #fdf6f8;
 }
-
-.aba {
-  display: none;
-  padding: 20px;
-}
-
-.aba.ativa {
-  display: block;
-}
-
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 15px;
-}
-
-.card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card img {
-  width: 100%;
-  height: 220px;   /* 👈 controla o tamanho */
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #f2b6c6; /* rosa bb */
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 14px;
-}
-</style>
-
 
 header {
   background: #f4c2c2;
@@ -65,10 +21,10 @@ header {
 
 .menu {
   display: flex;
-  overflow-x: auto;
   gap: 10px;
   padding: 10px;
   background: #f7e3d0;
+  overflow-x: auto;
 }
 
 .menu button {
@@ -77,7 +33,6 @@ header {
   padding: 10px 15px;
   border-radius: 20px;
   cursor: pointer;
-  white-space: nowrap;
   font-weight: bold;
 }
 
@@ -92,196 +47,76 @@ header {
 
 .produtos {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
 }
 
 .card img {
   width: 100%;
-  height: 230px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 12px;
-}
-
-.card p {
-  text-align: center;
-  margin: 5px 0;
-  font-weight: bold;
+  border-radius: 10px;
 }
 
 .btn {
-  display: block;
-  text-align: center;
+  display: inline-block;
+  margin-top: 8px;
   background: #f4c2c2;
   color: black;
   text-decoration: none;
   padding: 8px;
-  border-radius: 20px;
+  border-radius: 15px;
+  font-weight: bold;
 }
 </style>
-</head>
 
+<script>
+function abrirAba(id) {
+  document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
+}
+</script>
+
+</head>
 <body>
 
 <header>Leidi Store</header>
 
 <div class="menu">
-  <button onclick="mostrar('conjunto')">Conjunto Lingerie</button>
-  <button onclick="mostrar('calcinha')">Calcinha</button>
-  <button onclick="mostrar('babydoll')">Baby Doll</button>
-  <button onclick="mostrar('plus')">Plus Size</button>
-  <button onclick="mostrar('top')">Top</button>
-  <button onclick="mostrar('cueca')">Cuecas</button>
-  <button onclick="mostrar('meias')">Meias</button>
-  <button onclick="mostrar('semijoias')">Semi Joias</button>
+  <button onclick="abrirAba('conjunto')">Conjunto Lingerie</button>
 </div>
 
 <section id="conjunto" class="aba ativa">
   <h2>Conjunto Lingerie</h2>
- <div class="card"><img src="IMG_4758.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4759.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4760.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4761.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4762.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4763.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4764.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4765.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4766.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4768.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4769.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4770.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4771.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4772.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4773.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4774.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4775.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4776.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-
-<div class="card"><img src="IMG_4777.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4778.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4779.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-
-<div class="card"><img src="IMG_4781.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4782.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4783.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4784.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4785.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4786.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4787.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4788.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4789.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4790.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4791.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4792.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4793.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4794.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4795.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4796.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4797.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4798.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4799.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4800.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4801.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4802.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4803.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4804.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4805.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4806.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-
-<div class="card"><img src="IMG_4810.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4811.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4812.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4813.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4814.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4815.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4816.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4817.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4818.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4819.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4820.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4821.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4822.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4823.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4824.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4825.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4826.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4827.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4828.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4829.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4830.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4831.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4832.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4833.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4834.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4835.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4836.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4837.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4838.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4839.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4840.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4841.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4842.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4843.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-<div class="card"><img src="IMG_4844.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="https://wa.me/5547996374475">Comprar</a></div>
-
-  </div>
-</section>
-
-<section id="calcinha" class="aba">
-  <h2>Calcinha</h2>
   <div class="produtos">
-    <!-- fotos de calcinha aqui -->
+
+    <div class="card">
+      <img src="IMG_4758.jpeg">
+      <p>Conjunto Lingerie</p>
+      <a class="btn" href="https://wa.me/5547996374475">Comprar</a>
+    </div>
+
+    <div class="card">
+      <img src="IMG_4759.jpeg">
+      <p>Conjunto Lingerie</p>
+      <a class="btn" href="https://wa.me/5547996374475">Comprar</a>
+    </div>
+
+    <div class="card">
+      <img src="IMG_4760.jpeg">
+      <p>Conjunto Lingerie</p>
+      <a class="btn" href="https://wa.me/5547996374475">Comprar</a>
+    </div>
+
   </div>
 </section>
-
-<section id="babydoll" class="aba">
-  <h2>Baby Doll</h2>
-  <div class="produtos">
-    <!-- fotos de baby doll aqui -->
-  </div>
-</section>
-
-<section id="plus" class="aba">
-  <h2>Plus Size</h2>
-  <div class="produtos">
-    <!-- fotos plus size aqui -->
-  </div>
-</section>
-
-<section id="top" class="aba">
-  <h2>Top</h2>
-  <div class="produtos">
-    <!-- fotos de top aqui -->
-  </div>
-</section>
-
-<section id="cueca" class="aba">
-  <h2>Cuecas Adulto e Infantil</h2>
-  <div class="produtos">
-    <!-- fotos de cuecas aqui -->
-  </div>
-</section>
-
-<section id="meias" class="aba">
-  <h2>Meias</h2>
-  <div class="produtos">
-    <!-- fotos de meias aqui -->
-  </div>
-</section>
-
-<section id="semijoias" class="aba">
-  <h2>Semi Joias</h2>
-  <div class="produtos">
-    <!-- fotos de semi joias aqui -->
-  </div>
-</section>
-
-<script>
-function mostrar(id) {
-  document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
-  document.getElementById(id).classList.add('ativa');
-}
-</script>
 
 </body>
 </html>
