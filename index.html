@@ -430,12 +430,53 @@ header {
 <div id="semijoias" class="aba"><h2>Semi Joias</h2></div>
 
 <script>
-function abrirAba(id) {
-  document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
-  document.getElementById(id).classList.add('ativa');
+let carrinho = [];
+
+function adicionarCarrinho(nome, codigo, preco) {
+  carrinho.push({ nome, codigo, preco });
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const lista = document.getElementById('lista-carrinho');
+  const totalEl = document.getElementById('total');
+  lista.innerHTML = '';
+  let total = 0;
+
+  carrinho.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.nome} (${item.codigo}) - R$ ${item.preco}`;
+    lista.appendChild(li);
+    total += item.preco;
+  });
+
+  totalEl.textContent = `Total: R$ ${total}`;
+}
+
+function finalizarCompra() {
+  let mensagem = 'Olá! Quero comprar:%0A';
+  let total = 0;
+
+  carrinho.forEach(item => {
+    mensagem += `- ${item.nome} (${item.codigo}) - R$ ${item.preco}%0A`;
+    total += item.preco;
+  });
+
+  mensagem += `%0ATotal: R$ ${total}`;
+
+  window.open(
+    `https://wa.me/5547996374475?text=${mensagem}`,
+    '_blank'
+  );
 }
 </script>
 
 </body>
 </html>
+<section id="carrinho">
+  <h2>🛒 Carrinho</h2>
+  <ul id="lista-carrinho"></ul>
+  <p id="total"></p>
+  <button onclick="finalizarCompra()">Finalizar no WhatsApp</button>
+</section>
 
