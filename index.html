@@ -11,13 +11,12 @@ body{
   background:#fff0f5;
 }
 
-/* HEADER */
 header{
-  background:linear-gradient(90deg,#ff69b4,#ff1493);
+  background:#ff69b4;
   color:white;
-  padding:15px;
+  padding:18px;
   text-align:center;
-  font-size:24px;
+  font-size:26px;
   font-weight:bold;
 }
 
@@ -26,41 +25,59 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 20px;
-  background:#ffe4f1;
-  position:sticky;
-  top:0;
-  z-index:999;
+  padding:10px;
+  background:#ffb6d9;
+  flex-wrap:wrap;
+}
+
+.menu button{
+  background:#ff1493;
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin:4px;
+}
+
+.menu button:hover{
+  background:#c71585;
 }
 
 .carrinho-topo{
   background:#ff1493;
   color:white;
-  padding:8px 15px;
-  border-radius:25px;
+  padding:8px 14px;
+  border-radius:20px;
   cursor:pointer;
   font-weight:bold;
+}
+
+/* ABAS */
+.aba{
+  display:none;
+  padding:20px;
+}
+
+.ativa{
+  display:block;
 }
 
 /* PRODUTOS */
 .produtos{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:18px;
-  padding:20px;
+  gap:15px;
+  margin-top:20px;
 }
 
 .card{
   background:white;
-  border-radius:15px;
   padding:10px;
+  border-radius:15px;
   text-align:center;
-  box-shadow:0 5px 15px rgba(255,105,180,0.2);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.03);
+  box-shadow:0 4px 12px rgba(255,105,180,0.3);
 }
 
 .card img{
@@ -70,25 +87,27 @@ header{
   border-radius:10px;
 }
 
-.nome{
+.nome-produto{
   font-weight:bold;
   color:#ff1493;
-  margin-top:8px;
+  margin:8px 0 4px;
 }
 
 .preco{
   font-weight:bold;
-  margin:6px 0;
-  color:#ff1493;
-  font-size:16px;
+  color:#c71585;
+  margin-bottom:8px;
 }
 
-/* TAMANHOS */
+.tamanhos{
+  margin-bottom:8px;
+}
+
 .tamanhos button{
-  background:#ffc0db;
+  background:#ffd6eb;
   border:none;
   padding:5px 8px;
-  margin:3px;
+  margin:2px;
   border-radius:8px;
   cursor:pointer;
   font-weight:bold;
@@ -100,7 +119,6 @@ header{
   color:white;
 }
 
-/* BOTÃO */
 .btn{
   background:#ff1493;
   border:none;
@@ -110,7 +128,6 @@ header{
   color:white;
   font-weight:bold;
   cursor:pointer;
-  margin-top:5px;
 }
 
 .btn:hover{
@@ -122,12 +139,7 @@ header{
   display:none;
   background:white;
   padding:20px;
-  border-top:3px solid #ff1493;
-}
-
-#lista-carrinho{
-  list-style:none;
-  padding:0;
+  border-top:4px solid #ff1493;
 }
 </style>
 </head>
@@ -137,61 +149,89 @@ header{
 <header>Leidi Andrade Store</header>
 
 <div class="topo">
-<div></div>
-<div class="carrinho-topo" onclick="mostrarCarrinho()">
-🛒 Carrinho (<span id="contador">0</span>)
-</div>
+  <div class="menu">
+    <button onclick="abrirAba('conjuntos')">Conjunto</button>
+    <button onclick="abrirAba('calcinha')">Calcinha</button>
+    <button onclick="abrirAba('top')">Top</button>
+    <button onclick="abrirAba('cueca')">Cueca</button>
+    <button onclick="abrirAba('sutia')">Sutiã</button>
+    <button onclick="abrirAba('plussize')">Plus Size</button>
+  </div>
+
+  <div class="carrinho-topo" onclick="mostrarCarrinho()">
+    🛒 Carrinho (<span id="contador">0</span>)
+  </div>
 </div>
 
-<h2 style="text-align:center;color:#ff1493;">Conjuntos</h2>
+<!-- CONJUNTOS 54,90 -->
+<div id="conjuntos" class="aba ativa">
+<h2>Conjuntos - R$ 54,90</h2>
 
 <div class="produtos">
 
-<!-- MODELO 54,90 -->
-<script>
-let imagens = [
-"IMG_4845.jpeg","IMG_4846.jpeg","IMG_4847.jpeg","IMG_4848.jpeg",
-"IMG_4851.jpeg","IMG_4852.jpeg","IMG_4856.jpeg","IMG_4857.jpeg",
-"IMG_5387.png","IMG_5388.jpeg","IMG_5389.jpeg","IMG_5390.jpeg",
-"IMG_5391.jpeg","IMG_5392.jpeg","IMG_5393.jpeg","IMG_5394.jpeg",
-"IMG_5531.png","IMG_5631.png","IMG_5632.png","IMG_5633.png",
-"IMG_5686.png","IMG_5766.png","IMG_6038.png","IMG_6039.png",
-"IMG_6318.jpeg","IMG_6838.png",
-
-"00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
-"0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg",
-"1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg",
-"39c484dd-4065-4903-b31c-db20d078e97a.jpeg",
-"46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
-"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"
-];
-
-let container = document.currentScript.parentElement;
-
-imagens.forEach(function(img){
-container.innerHTML += `
+<!-- MODELO PADRÃO -->
 <div class="card">
-<img src="${img}">
-<div class="nome">Conjunto Rosa BB</div>
-<div class="preco">R$ 54,90</div>
+<img src="IMG_4845.jpeg">
+<p class="nome-produto">Conjunto Lingerie</p>
+<p class="preco">R$ 54,90</p>
+
 <div class="tamanhos">
-<button onclick="selecionar(this)">P</button>
-<button onclick="selecionar(this)">M</button>
-<button onclick="selecionar(this)">G</button>
-<button onclick="selecionar(this)">GG</button>
+<button onclick="selecionarTamanho(this)">P</button>
+<button onclick="selecionarTamanho(this)">M</button>
+<button onclick="selecionarTamanho(this)">G</button>
+<button onclick="selecionarTamanho(this)">GG</button>
 </div>
-<button class="btn" onclick="adicionarCarrinho('${img}',54.90)">Adicionar ao Carrinho</button>
+
+<button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">
+Adicionar ao Carrinho
+</button>
 </div>
-`;
-});
-</script>
+
+<div class="card">
+<img src="IMG_4846.jpeg">
+<p class="nome-produto">Conjunto Lingerie</p>
+<p class="preco">R$ 54,90</p>
+<div class="tamanhos">
+<button onclick="selecionarTamanho(this)">P</button>
+<button onclick="selecionarTamanho(this)">M</button>
+<button onclick="selecionarTamanho(this)">G</button>
+<button onclick="selecionarTamanho(this)">GG</button>
+</div>
+<button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">
+Adicionar ao Carrinho
+</button>
+</div>
 
 </div>
+</div>
+
+<!-- CALCINHAS -->
+<div id="calcinha" class="aba">
+<h2>Calcinhas</h2>
+<div class="produtos">
+
+<div class="card">
+<img src="IMG_5090.jpeg">
+<p class="nome-produto">Calcinha</p>
+<p class="preco">R$ 14,00</p>
+<button class="btn" onclick="addCarrinho('Calcinha',14)">
+Adicionar ao Carrinho
+</button>
+</div>
+
+</div>
+</div>
+
+<!-- OUTRAS ABAS -->
+<div id="top" class="aba"><h2>Top</h2></div>
+<div id="cueca" class="aba"><h2>Cueca</h2></div>
+<div id="sutia" class="aba"><h2>Sutiã</h2></div>
+<div id="plussize" class="aba"><h2>Plus Size</h2></div>
 
 <!-- CARRINHO -->
 <div id="carrinho">
-<h2 style="color:#ff1493;">🛒 Seu Carrinho</h2>
-<ul id="lista-carrinho"></ul>
+<h2>🛒 Seu Carrinho</h2>
+<ul id="lista"></ul>
 <p><strong id="total"></strong></p>
 <button class="btn" onclick="finalizarCompra()">Finalizar no WhatsApp</button>
 </div>
@@ -199,51 +239,64 @@ container.innerHTML += `
 <script>
 let carrinho=[];
 
-function selecionar(btn){
-let botoes = btn.parentElement.querySelectorAll("button");
-botoes.forEach(b=>b.style.background="#ffc0db");
-btn.style.background="#ff1493";
-btn.style.color="white";
+function abrirAba(id){
+document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
+document.getElementById(id).classList.add('ativa');
+document.getElementById('carrinho').style.display="none";
 }
 
-function adicionarCarrinho(nome,preco){
+function selecionarTamanho(botao){
+let botoes=botao.parentElement.querySelectorAll("button");
+botoes.forEach(b=>b.style.background="#ffd6eb");
+botao.style.background="#ff1493";
+botao.style.color="white";
+}
+
+function addCarrinho(nome,preco){
 carrinho.push({nome,preco});
 document.getElementById("contador").innerText=carrinho.length;
-alert("Adicionado ao carrinho!");
+alert("Produto adicionado!");
+}
+
+function addCarrinhoComTamanho(botao,nome,preco){
+let tamanhoSelecionado=botao.parentElement.querySelector(".tamanhos button[style*='rgb']");
+if(!tamanhoSelecionado){
+alert("Selecione o tamanho!");
+return;
+}
+let tamanho=tamanhoSelecionado.innerText;
+carrinho.push({nome:nome+" - Tam "+tamanho,preco});
+document.getElementById("contador").innerText=carrinho.length;
+alert("Produto adicionado!");
 }
 
 function mostrarCarrinho(){
-let div=document.getElementById("carrinho");
-div.style.display="block";
-
-let lista=document.getElementById("lista-carrinho");
-lista.innerHTML="";
+document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
+document.getElementById('carrinho').style.display="block";
+let lista=document.getElementById("lista");
 let total=0;
-
+lista.innerHTML="";
 carrinho.forEach(item=>{
 let li=document.createElement("li");
 li.innerText=item.nome+" - R$ "+item.preco;
 lista.appendChild(li);
 total+=item.preco;
 });
-
 document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
 }
 
 function finalizarCompra(){
 let mensagem="Olá! Quero comprar:%0A";
 let total=0;
-
 carrinho.forEach(item=>{
 mensagem+= "- "+item.nome+" - R$ "+item.preco+"%0A";
 total+=item.preco;
 });
-
 mensagem+="%0ATotal: R$ "+total.toFixed(2);
-
 window.open("https://wa.me/5547996374475?text="+mensagem,"_blank");
 }
 </script>
 
 </body>
 </html>
+
