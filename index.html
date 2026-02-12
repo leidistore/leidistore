@@ -2,489 +2,262 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Leidi Store</title>
-  
-<button onclick="alert('teste')">TESTE</button>
+<title>Leidi Andrade Store</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fdf6f3;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff6f8;
 }
 
-header {
-  background: #f4c2c2;
-  padding: 15px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
+header{
+  background:#f8c8dc;
+  padding:15px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
 }
 
-.menu {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  background: #f7e3d0;
-  overflow-x: auto;
+.topo{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  background:#ffd9e8;
+  flex-wrap:wrap;
 }
 
-.menu button {
-  border: none;
-  background: #f4c2c2;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap;
+.menu{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.menu button:hover {
-  background: #e9aeb0;
+.menu button{
+  border:none;
+  background:#f8c8dc;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.aba {
-  display: none;
-  padding: 15px;
+.menu button:hover{
+  background:#f4a9c6;
 }
 
-.aba.ativa {
-  display: block;
+.carrinho-topo{
+  background:#f8c8dc;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 15px;
+.aba{
+  display:none;
+  padding:20px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 15px;
-  padding: 10px;
+.ativa{
+  display:block;
 }
 
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
+.produtos{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:15px;
 }
 
-.card p {
-  text-align: center;
-  font-weight: bold;
-  margin: 8px 0;
+.card{
+  background:white;
+  padding:10px;
+  border-radius:15px;
+  text-align:center;
 }
 
-.btn {
-  display: block;
-  text-align: center;
-  background: #f4c2c2;
-  color: #000;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 20px;
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:10px;
 }
+
+.preco{
+  font-weight:bold;
+  margin:5px 0;
+}
+
+.btn{
+  background:#f8c8dc;
+  border:none;
+  padding:8px;
+  border-radius:20px;
+  cursor:pointer;
+  width:100%;
+  font-weight:bold;
+}
+
+#carrinho{
+  display:none;
+  background:white;
+  padding:15px;
+  border-top:3px solid #f8c8dc;
+}
+
+#lista-carrinho{
+  list-style:none;
+  padding:0;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>Leidi Store</header>
+<header>Leidi Andrade Store</header>
+
+<div class="topo">
 
 <div class="menu">
-  <button onclick="abrirAba('conjuntos')">Conjunto Lingerie</button>
-  <button onclick="abrirAba('calcinha')">Calcinha</button>
-  <button onclick="abrirAba('babydoll')">Baby Doll</button>
-  <button onclick="abrirAba('plussize')">Plus Size</button>
-  <button onclick="abrirAba('top')">Top</button>
-  <button onclick="abrirAba('cuecas')">Cuecas</button>
-  <button onclick="abrirAba('meias')">Meias</button>
-  <button onclick="abrirAba('semijoias')">Semi Joias</button>
+<button onclick="abrirAba('conjuntos')">Conjuntos</button>
+<button onclick="abrirAba('calcinha')">Calcinhas</button>
+<button onclick="abrirAba('babydoll')">Baby Doll</button>
+<button onclick="abrirAba('plussize')">Plus Size</button>
+<button onclick="abrirAba('top')">Top</button>
+<button onclick="abrirAba('cuecas')">Cuecas</button>
+<button onclick="abrirAba('meias')">Meias</button>
 </div>
 
-<!-- CONJUNTO LINGERIE -->
+<div class="carrinho-topo" onclick="mostrarCarrinho()">
+🛒 Carrinho (<span id="contador">0</span>)
+</div>
+
+</div>
+
+<!-- CONJUNTOS -->
 <div id="conjuntos" class="aba ativa">
-  <h2>Conjunto Lingerie</h2>
-  <div class="produtos">
+<h2>Conjuntos</h2>
+<div class="produtos">
 
-    <div class="card">
-      <img src="IMG_4759.jpeg">
-      <p>Conjunto Lingerie</p>
-        <p class="preco">R$ 49,90</p>
-      <a class="btn" href="#">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="IMG_4760.jpeg">
-      <p>Conjunto Lingerie</p>
-      <a class="btn" href="#">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="IMG_4761.jpeg">
-    <p>Conjunto Lingerie</p>
-   <p class="preco">R$ 49,90</p>
-      <a class="btn" href="#">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="IMG_4762.jpeg">
-      <p>Conjunto Lingerie</p>
-      <a class="btn" href="#">Comprar</a>
-    </div>
-
-  <div class="card"><img src="IMG_4762.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4763.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4764.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4765.jpeg"><p>Conjunto Lingerie<p class="preco">R$ 49,90</p>/p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4766.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4768.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4769.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4770.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4771.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4772.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4773.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4774.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4775.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4776.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4777.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4778.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4779.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4781.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4782.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4783.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4784.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4785.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4786.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4787.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4788.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4789.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4790.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4791.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4792.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4793.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4794.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4795.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4796.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4797.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4798.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4799.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4800.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4801.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4802.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4803.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4804.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4805.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4806.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4810.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4811.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4812.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4813.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4814.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4815.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4816.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4817.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4818.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4819.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4820.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4821.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4822.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4823.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4824.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4825.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4826.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4827.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4828.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4829.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4830.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4831.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4832.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4833.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4834.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4835.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4836.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4837.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4838.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4839.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4840.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4841.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4842.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4843.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-<div class="card"><img src="IMG_4844.jpeg"><p>Conjunto Lingerie</p><a class="btn" href="#">Comprar</a></div>
-
-  </div>
+<div class="card">
+<img src="IMG_4759.jpeg">
+<p>Conjunto Lingerie</p>
+<p class="preco">R$ 49,90</p>
+<button class="btn" onclick="addCarrinho('Conjunto Lingerie IMG_4759',49.90)">Adicionar ao Carrinho</button>
 </div>
 
+<div class="card">
+<img src="IMG_4760.jpeg">
+<p>Conjunto Lingerie</p>
+<p class="preco">R$ 49,90</p>
+<button class="btn" onclick="addCarrinho('Conjunto Lingerie IMG_4760',49.90)">Adicionar ao Carrinho</button>
+</div>
 
+</div>
+</div>
+
+<!-- CALCINHAS -->
 <div id="calcinha" class="aba">
-  <h2>Calcinha Fio</h2>
-
-  <div class="produtos">
-
-    <div class="card"><img src="IMG_4886.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%2045718d1c%20(R$14)">Comprar</a>
-    </div>
-    <div class="card"><img src="IMG_4887.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%2045718d1c%20(R$14)">Comprar</a>
-    </div>
-    <div class="card"><img src="IMG_4888.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4890.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4891.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4892.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_4895.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4896.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4897.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4898.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4899.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_4902.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4903.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4904.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4905.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4906.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4907.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_4908.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4909.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4910.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4911.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4912.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4913.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_4914.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4915.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4916.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4917.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4918.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4919.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_4920.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4921.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4922.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_4923.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_5373.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_5663.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_5868.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_5887.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_6001.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_6011.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_6309.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_6696.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_6697.png"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-
-    <div class="card"><img src="IMG_7431.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    <div class="card"><img src="IMG_7945.jpeg"><p>Calcinha Fio</p><p class="preco">R$ 12 cada</p><a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-    
-    </div>
-</section
-  
-<section id="calcinha-fio-14">
-    <h2>Calcinha Fio — R$ 14,00</h2>
-  
-  <div class="produtos">
-    <div class="card">
-      <img src="44af326e-0d1c-4012-9b5d-155295963713.jpeg" alt="Calcinha Fio">
-      <h4>Calcinha Fio</h4>
-      <p class="preco">R$ 14,00</p>
-      <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%2044af326e%20(R$14)">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="45718d1c-5381-4106-8fce-b26188774a14.jpeg" alt="Calcinha Fio">
-      <h4>Calcinha Fio</h4>
-      <p class="preco">R$ 14,00</p>
-      <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%2045718d1c%20(R$14)">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="8947409a-83bb-4111-95e5-3e79b845157c.jpeg" alt="Calcinha Fio">
-      <h4>Calcinha Fio</h4>
-      <p class="preco">R$ 14,00</p>
-      <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%208947409a%20(R$14)">Comprar</a> </div>
-      
-  </div>
-</section>
-  
-<section id="calcinha-fio-16">
-  <h2>Calcinha Fio — R$ 16,00</h2>
+<h2>Calcinhas</h2>
+<div class="produtos">
 
 <div class="card">
-  <img src="IMG_5925.png" alt="Calcinha Fio">
-  <h4>Calcinha Fio</h4>
-  <p class="preco">R$ 16,00</p>
-
-  <button onclick="adicionarCarrinho('Calcinha Fio', 'IMG_5925', 16)">
-    Adicionar ao carrinho
-  </button>
-</div>
-
-
-<div class="card">
-  <img src="IMG_5926.png" alt="Calcinha Fio">
-  <h4>Calcinha Fio</h4>
-  <p class="preco">R$ 16,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%20IMG_5926%20(R$16)">Comprar</a>
+<img src="44af326e-0d1c-4012-9b5d-155295963713.jpeg">
+<p>Calcinha Fio</p>
+<p class="preco">R$ 14,00</p>
+<button class="btn" onclick="addCarrinho('Calcinha Fio 44af326e',14)">Adicionar ao Carrinho</button>
 </div>
 
 <div class="card">
-  <img src="IMG_5372.png" alt="Calcinha Fio">
-  <h4>Calcinha Fio</h4>
-  <p class="preco">R$ 16,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Fio%20IMG_5372%20(R$16)">Comprar</a>
-</div>
-
-  </div>
-</section>
-  
-<section id="calcinha-tanga-12">
-  <h2>Calcinha tanga — R$ 12,00</h2>
-
-   <div class="produtos">
-  <div class="card">
-  <img src="IMG_5090.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5090%20(R$12)">Comprar</a>
+<img src="45718d1c-5381-4106-8fce-b26188774a14.jpeg">
+<p>Calcinha Fio</p>
+<p class="preco">R$ 14,00</p>
+<button class="btn" onclick="addCarrinho('Calcinha Fio 45718d1c',14)">Adicionar ao Carrinho</button>
 </div>
 
 <div class="card">
-  <img src="IMG_5091.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5091%20(R$12)">Comprar</a>
+<img src="IMG_5925.png">
+<p>Calcinha Fio</p>
+<p class="preco">R$ 16,00</p>
+<button class="btn" onclick="addCarrinho('Calcinha Fio IMG_5925',16)">Adicionar ao Carrinho</button>
 </div>
 
 <div class="card">
-  <img src="IMG_5092.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5092%20(R$12)">Comprar</a>
+<img src="IMG_5090.jpeg">
+<p>Calcinha Tanga</p>
+<p class="preco">R$ 12,00</p>
+<button class="btn" onclick="addCarrinho('Calcinha Tanga IMG_5090',12)">Adicionar ao Carrinho</button>
 </div>
 
-<div class="card">
-  <img src="IMG_5093.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5093%20(R$12)">Comprar</a>
+</div>
 </div>
 
-<div class="card">
-  <img src="IMG_5094.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5094%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5098.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5098%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5099.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5099%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5100.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5100%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5101.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5101%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5102.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5102%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5103.jpeg" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5103%20(R$12)">Comprar</a>
-</div>
-
-<div class="card">
-  <img src="IMG_5373.png" alt="Calcinha Tanga">
-  <h4>Calcinha Tanga</h4>
-  <p class="preco">R$ 12,00</p>
-  <a class="btn" href="https://wa.me/5547996374475?text=Olá!%20Quero%20a%20Calcinha%20Tanga%20IMG_5373%20(R$12)">Comprar</a>
-</div>
-
+<!-- OUTRAS ABAS -->
 <div id="babydoll" class="aba"><h2>Baby Doll</h2></div>
 <div id="plussize" class="aba"><h2>Plus Size</h2></div>
 <div id="top" class="aba"><h2>Top</h2></div>
 <div id="cuecas" class="aba"><h2>Cuecas</h2></div>
 <div id="meias" class="aba"><h2>Meias</h2></div>
-<div id="semijoias" class="aba"><h2>Semi Joias</h2></div>
-</html>
-<!--
+
+<!-- CARRINHO -->
+<div id="carrinho">
+<h2>🛒 Seu Carrinho</h2>
+<ul id="lista-carrinho"></ul>
+<p><strong id="total"></strong></p>
+<button class="btn" onclick="finalizarCompra()">Finalizar no WhatsApp</button>
+</div>
+
 <script>
-let carrinho = [];
 
-function adicionarCarrinho(nome, codigo, preco) {
-  carrinho.push({ nome, codigo, preco });
-  atualizarCarrinho();
+let carrinho=[];
+
+function abrirAba(id){
+document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
+document.getElementById(id).classList.add('ativa');
+document.getElementById('carrinho').style.display="none";
 }
 
-function atualizarCarrinho() {
-  const lista = document.getElementById('lista-carrinho');
-  const totalEl = document.getElementById('total');
-
-  if (!lista || !totalEl) return;
-
-  lista.innerHTML = '';
-  let total = 0;
-
-  carrinho.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item.nome + ' (' + item.codigo + ') - R$ ' + item.preco;
-    lista.appendChild(li);
-    total += item.preco;
-  });
-
-  totalEl.textContent = 'Total: R$ ' + total;
+function addCarrinho(nome,preco){
+carrinho.push({nome,preco});
+document.getElementById("contador").innerText=carrinho.length;
+alert("Produto adicionado ao carrinho!");
 }
 
-function finalizarCompra() {
-  let mensagem = 'Olá! Quero comprar:%0A';
-  let total = 0;
+function mostrarCarrinho(){
+document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
+document.getElementById('carrinho').style.display="block";
 
-  carrinho.forEach(item => {
-    mensagem += '- ' + item.nome + ' (' + item.codigo + ') - R$ ' + item.preco + '%0A';
-    total += item.preco;
-  });
+let lista=document.getElementById("lista-carrinho");
+let total=0;
+lista.innerHTML="";
 
-  mensagem += '%0ATotal: R$ ' + total;
+carrinho.forEach(item=>{
+let li=document.createElement("li");
+li.innerText=item.nome+" - R$ "+item.preco;
+lista.appendChild(li);
+total+=item.preco;
+});
 
-  window.open('https://wa.me/5547996374475?text=' + mensagem, '_blank');
+document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
 }
+
+function finalizarCompra(){
+let mensagem="Olá! Quero comprar:%0A";
+let total=0;
+
+carrinho.forEach(item=>{
+mensagem+= "- "+item.nome+" - R$ "+item.preco+"%0A";
+total+=item.preco;
+});
+
+mensagem+="%0ATotal: R$ "+total.toFixed(2);
+
+window.open("https://wa.me/5547996374475?text="+mensagem,"_blank");
+}
+
 </script>
-
--->
 
 </body>
 </html>
-<section id="carrinho">
-  <h2>🛒 Carrinho</h2>
-  <ul id="lista-carrinho"></ul>
-  <p id="total"></p>
-  <button onclick="finalizarCompra()">Finalizar no WhatsApp</button>
-</section>
-
