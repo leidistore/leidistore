@@ -5,257 +5,220 @@
 <title>Leidi Andrade Store</title>
 
 <style>
-function selecionarTamanho(botao){
-  let botoes = botao.parentElement.querySelectorAll("button");
-  botoes.forEach(b => b.style.background="#ffd6eb");
-  botao.style.background="#ff69b4";
-  botao.setAttribute("data-selecionado","true");
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff0f5;
 }
 
-function addCarrinhoComTamanho(botao,nome,preco){
-  let card = botao.parentElement;
-  let tamanhoSelecionado = card.querySelector("[data-selecionado='true']");
-  
-  if(!tamanhoSelecionado){
-    alert("Selecione um tamanho!");
-    return;
-  }
-
-  let tamanho = tamanhoSelecionado.innerText;
-
-  carrinho.push({nome: nome+" - Tam "+tamanho, preco});
-  document.getElementById("contador").innerText=carrinho.length;
-  alert("Produto adicionado ao carrinho!");
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#ff69b4,#ff1493);
+  color:white;
+  padding:15px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
 }
 
+/* TOPO */
+.topo{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+  background:#ffe4f1;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.carrinho-topo{
+  background:#ff1493;
+  color:white;
+  padding:8px 15px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* PRODUTOS */
+.produtos{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:18px;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(255,105,180,0.2);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.nome{
+  font-weight:bold;
+  color:#ff1493;
+  margin-top:8px;
+}
+
+.preco{
+  font-weight:bold;
+  margin:6px 0;
+  color:#ff1493;
+  font-size:16px;
+}
+
+/* TAMANHOS */
+.tamanhos button{
+  background:#ffc0db;
+  border:none;
+  padding:5px 8px;
+  margin:3px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  color:#ff1493;
+}
+
+.tamanhos button:hover{
+  background:#ff69b4;
+  color:white;
+}
+
+/* BOTÃO */
+.btn{
+  background:#ff1493;
+  border:none;
+  padding:8px;
+  width:100%;
+  border-radius:20px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+.btn:hover{
+  background:#c71585;
+}
+
+/* CARRINHO */
+#carrinho{
+  display:none;
+  background:white;
+  padding:20px;
+  border-top:3px solid #ff1493;
+}
+
+#lista-carrinho{
+  list-style:none;
+  padding:0;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-  <div class="topo">
-    <div class="logo">Leidi Andrade Store</div>
+<header>Leidi Andrade Store</header>
 
-    <div class="menu">
-      <button onclick="abrirAba('conjuntos')">Conjuntos</button>
-      <button onclick="abrirAba('calcinha')">Calcinhas</button>
-      <button onclick="abrirAba('babydoll')">Baby Doll</button>
-      <button onclick="abrirAba('plussize')">Plus Size</button>
-      <button onclick="abrirAba('top')">Top</button>
-      <button onclick="abrirAba('cuecas')">Cuecas</button>
-      <button onclick="abrirAba('meias')">Meias</button>
-    </div>
-
-    <div class="carrinho-topo" onclick="mostrarCarrinho()">
-      🛒 Carrinho (<span id="contador">0</span>)
-    </div>
-  </div>
-</header>
-
-
-<!-- CONJUNTOS -->
-<div id="conjuntos" class="aba ativa">
-<h2>Conjuntos</h2>
-<div class="produtos">
-
-<div class="card">
-<img src="IMG_4759.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 49,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie IMG_4759',49.90)">Adicionar ao Carrinho</button>
+<div class="topo">
+<div></div>
+<div class="carrinho-topo" onclick="mostrarCarrinho()">
+🛒 Carrinho (<span id="contador">0</span>)
+</div>
 </div>
 
-<div class="card">
-<img src="IMG_4760.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 49,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie IMG_4760',49.90)">Adicionar ao Carrinho</button>
-</div>  
-
-<div class="card">
-<img src="00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 01',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 02',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 03',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="39c484dd-4065-4903-b31c-db20d078e97a.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 04',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 05',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 59,90</p>
-<button class="btn" onclick="addCarrinho('Conjunto Lingerie 06',59.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card"><img src="IMG_4853.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4853',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4854.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4854',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4855.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4855',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4858.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4858',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4859.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4859',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4860.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4860',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4861.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4861',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4862.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4862',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4863.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4863',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4864.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4864',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4865.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4865',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4866.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4866',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4867.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4867',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4868.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4868',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4869.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4869',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4877.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4877',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4878.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4878',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4879.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4879',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4880.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4880',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4881.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4881',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4882.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4882',59.90)">Adicionar ao Carrinho</button></div>
-<div class="card"><img src="IMG_4883.jpeg"><p>Conjunto Lingerie</p><p class="preco">R$ 59,90</p><button class="btn" onclick="addCarrinho('Conjunto 4883',59.90)">Adicionar ao Carrinho</button></div>
-
-</div>
-
-<h2>Conjuntos – R$ 54,90</h2>
+<h2 style="text-align:center;color:#ff1493;">Conjuntos</h2>
 
 <div class="produtos">
 
+<!-- MODELO 54,90 -->
+<script>
+let imagens = [
+"IMG_4845.jpeg","IMG_4846.jpeg","IMG_4847.jpeg","IMG_4848.jpeg",
+"IMG_4851.jpeg","IMG_4852.jpeg","IMG_4856.jpeg","IMG_4857.jpeg",
+"IMG_5387.png","IMG_5388.jpeg","IMG_5389.jpeg","IMG_5390.jpeg",
+"IMG_5391.jpeg","IMG_5392.jpeg","IMG_5393.jpeg","IMG_5394.jpeg",
+"IMG_5531.png","IMG_5631.png","IMG_5632.png","IMG_5633.png",
+"IMG_5686.png","IMG_5766.png","IMG_6038.png","IMG_6039.png",
+"IMG_6318.jpeg","IMG_6838.png",
+
+"00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
+"0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg",
+"1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg",
+"39c484dd-4065-4903-b31c-db20d078e97a.jpeg",
+"46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
+"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"
+];
+
+let container = document.currentScript.parentElement;
+
+imagens.forEach(function(img){
+container.innerHTML += `
 <div class="card">
-  <img src="IMG_4845.jpeg">
-  <p class="nome-produto">Conjunto Lingerie</p>
-  <p class="preco">R$ 54,90</p>
-
-  <div class="tamanhos">
-    <button onclick="selecionarTamanho(this)">P</button>
-    <button onclick="selecionarTamanho(this)">M</button>
-    <button onclick="selecionarTamanho(this)">G</button>
-    <button onclick="selecionarTamanho(this)">GG</button>
-  </div>
-
-  <button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">
-    Adicionar ao Carrinho
-  </button>
+<img src="${img}">
+<div class="nome">Conjunto Rosa BB</div>
+<div class="preco">R$ 54,90</div>
+<div class="tamanhos">
+<button onclick="selecionar(this)">P</button>
+<button onclick="selecionar(this)">M</button>
+<button onclick="selecionar(this)">G</button>
+<button onclick="selecionar(this)">GG</button>
 </div>
-
-
-<div class="card"><img src="IMG_4846.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4847.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4848.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4851.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4852.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4856.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
-
-<div class="card"><img src="IMG_4857.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+<button class="btn" onclick="adicionarCarrinho('${img}',54.90)">Adicionar ao Carrinho</button>
+</div>
+`;
+});
+</script>
 
 </div>
-
-  
-  
-</div>
-</div>
-
-<!-- CALCINHAS -->
-<div id="calcinha" class="aba">
-<h2>Calcinhas</h2>
-<div class="produtos">
-
-<div class="card">
-<img src="44af326e-0d1c-4012-9b5d-155295963713.jpeg">
-<p>Calcinha Fio</p>
-<p class="preco">R$ 14,00</p>
-<button class="btn" onclick="addCarrinho('Calcinha Fio 44af326e',14)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="45718d1c-5381-4106-8fce-b26188774a14.jpeg">
-<p>Calcinha Fio</p>
-<p class="preco">R$ 14,00</p>
-<button class="btn" onclick="addCarrinho('Calcinha Fio 45718d1c',14)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5925.png">
-<p>Calcinha Fio</p>
-<p class="preco">R$ 16,00</p>
-<button class="btn" onclick="addCarrinho('Calcinha Fio IMG_5925',16)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5090.jpeg">
-<p>Calcinha Tanga</p>
-<p class="preco">R$ 12,00</p>
-<button class="btn" onclick="addCarrinho('Calcinha Tanga IMG_5090',12)">Adicionar ao Carrinho</button>
-</div>
-  
-</div>
-</div>
-
-<!-- OUTRAS ABAS -->
-<div id="babydoll" class="aba"><h2>Baby Doll</h2></div>
-<div id="plussize" class="aba"><h2>Plus Size</h2></div>
-<div id="top" class="aba"><h2>Top</h2></div>
-<div id="cuecas" class="aba"><h2>Cuecas</h2></div>
-<div id="meias" class="aba"><h2>Meias</h2></div>
 
 <!-- CARRINHO -->
 <div id="carrinho">
-<h2>🛒 Seu Carrinho</h2>
+<h2 style="color:#ff1493;">🛒 Seu Carrinho</h2>
 <ul id="lista-carrinho"></ul>
 <p><strong id="total"></strong></p>
 <button class="btn" onclick="finalizarCompra()">Finalizar no WhatsApp</button>
 </div>
 
 <script>
-
 let carrinho=[];
 
-function abrirAba(id){
-document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
-document.getElementById(id).classList.add('ativa');
-document.getElementById('carrinho').style.display="none";
+function selecionar(btn){
+let botoes = btn.parentElement.querySelectorAll("button");
+botoes.forEach(b=>b.style.background="#ffc0db");
+btn.style.background="#ff1493";
+btn.style.color="white";
 }
 
-function addCarrinho(nome,preco){
+function adicionarCarrinho(nome,preco){
 carrinho.push({nome,preco});
 document.getElementById("contador").innerText=carrinho.length;
-alert("Produto adicionado ao carrinho!");
+alert("Adicionado ao carrinho!");
 }
 
 function mostrarCarrinho(){
-document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));
-document.getElementById('carrinho').style.display="block";
+let div=document.getElementById("carrinho");
+div.style.display="block";
 
 let lista=document.getElementById("lista-carrinho");
-let total=0;
 lista.innerHTML="";
+let total=0;
 
 carrinho.forEach(item=>{
 let li=document.createElement("li");
@@ -280,7 +243,6 @@ mensagem+="%0ATotal: R$ "+total.toFixed(2);
 
 window.open("https://wa.me/5547996374475?text="+mensagem,"_blank");
 }
-
 </script>
 
 </body>
