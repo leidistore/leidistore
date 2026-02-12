@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Leidi Store</title>
+  
+<button onclick="alert('teste')">TESTE</button>
 
 <style>
 body {
@@ -431,7 +433,7 @@ header {
 <div id="cuecas" class="aba"><h2>Cuecas</h2></div>
 <div id="meias" class="aba"><h2>Meias</h2></div>
 <div id="semijoias" class="aba"><h2>Semi Joias</h2></div>
-
+</html>
 <script>
 let carrinho = [];
 
@@ -443,17 +445,20 @@ function adicionarCarrinho(nome, codigo, preco) {
 function atualizarCarrinho() {
   const lista = document.getElementById('lista-carrinho');
   const totalEl = document.getElementById('total');
+
+  if (!lista || !totalEl) return;
+
   lista.innerHTML = '';
   let total = 0;
 
   carrinho.forEach(item => {
     const li = document.createElement('li');
-    li.textContent = `${item.nome} (${item.codigo}) - R$ ${item.preco}`;
+    li.textContent = item.nome + ' (' + item.codigo + ') - R$ ' + item.preco;
     lista.appendChild(li);
     total += item.preco;
   });
 
-  totalEl.textContent = `Total: R$ ${total}`;
+  totalEl.textContent = 'Total: R$ ' + total;
 }
 
 function finalizarCompra() {
@@ -461,19 +466,15 @@ function finalizarCompra() {
   let total = 0;
 
   carrinho.forEach(item => {
-    mensagem += `- ${item.nome} (${item.codigo}) - R$ ${item.preco}%0A`;
+    mensagem += '- ' + item.nome + ' (' + item.codigo + ') - R$ ' + item.preco + '%0A';
     total += item.preco;
   });
 
-  mensagem += `%0ATotal: R$ ${total}`;
+  mensagem += '%0ATotal: R$ ' + total;
 
-  window.open(
-    `https://wa.me/5547996374475?text=${mensagem}`,
-    '_blank'
-  );
+  window.open('https://wa.me/5547996374475?text=' + mensagem, '_blank');
 }
 </script>
-
 </body>
 </html>
 <section id="carrinho">
