@@ -5,102 +5,32 @@
 <title>Leidi Andrade Store</title>
 
 <style>
-<head>
-<meta charset="UTF-8">
-<title>Leidi Andrade Store</title>
-
-<style>
-
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#fff0f5;
+function selecionarTamanho(botao){
+  let botoes = botao.parentElement.querySelectorAll("button");
+  botoes.forEach(b => b.style.background="#ffd6eb");
+  botao.style.background="#ff69b4";
+  botao.setAttribute("data-selecionado","true");
 }
 
-header{
-  background:#ffb6d9;
-  padding:15px;
-  text-align:center;
-  font-size:24px;
-  font-weight:bold;
-  color:white;
-}
+function addCarrinhoComTamanho(botao,nome,preco){
+  let card = botao.parentElement;
+  let tamanhoSelecionado = card.querySelector("[data-selecionado='true']");
+  
+  if(!tamanhoSelecionado){
+    alert("Selecione um tamanho!");
+    return;
+  }
 
-.produtos{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:15px;
-  margin-top:20px;
-}
+  let tamanho = tamanhoSelecionado.innerText;
 
-.card{
-  background:white;
-  padding:10px;
-  border-radius:15px;
-  text-align:center;
-  box-shadow:0 4px 10px rgba(255,182,217,0.4);
-}
-
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:10px;
-}
-
-.nome-produto{
-  font-weight:bold;
-  color:#ff69b4;
-  margin:8px 0 4px;
-}
-
-.preco{
-  font-weight:bold;
-  color:#ff1493;
-  margin-bottom:8px;
-}
-
-.tamanhos{
-  margin-bottom:8px;
-}
-
-.tamanhos button{
-  background:#ff69b4;   /* ROSA */
-  border:none;
-  padding:5px 8px;
-  margin:2px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  color:white;
-}
-
-.tamanhos button:hover{
-  background:#ff1493;  /* ROSA MAIS FORTE */
-}
-
-.btn{
-  background:#ff69b4;
-  border:none;
-  padding:8px;
-  width:100%;
-  border-radius:20px;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.btn:hover{
-  background:#ff1493;
+  carrinho.push({nome: nome+" - Tam "+tamanho, preco});
+  document.getElementById("contador").innerText=carrinho.length;
+  alert("Produto adicionado ao carrinho!");
 }
 
 </style>
 </head>
 <body>
-
-<header>Leidi Andrade Store</header>
-
-<div class="topo">
 
 <header>
   <div class="topo">
@@ -209,364 +139,44 @@ header{
 
 </div>
 
-  <div class="produtos">
-  
-  <div class="card">
-    <img src="IMG_4845.jpeg">
-    <p class="nome-produto">Conjunto Lingerie</p>
-    <p class="preco">R$ 54,90</p>
+<h2>Conjuntos – R$ 54,90</h2>
 
-    <div class="tamanhos">
-      <button>P</button>
-      <button>M</button>
-      <button>G</button>
-      <button>GG</button>
-    </div>
+<div class="produtos">
 
-    <button class="btn">Adicionar ao Carrinho</button>
+<div class="card">
+  <img src="IMG_4845.jpeg">
+  <p class="nome-produto">Conjunto Lingerie</p>
+  <p class="preco">R$ 54,90</p>
+
+  <div class="tamanhos">
+    <button onclick="selecionarTamanho(this)">P</button>
+    <button onclick="selecionarTamanho(this)">M</button>
+    <button onclick="selecionarTamanho(this)">G</button>
+    <button onclick="selecionarTamanho(this)">GG</button>
   </div>
 
-</div>
- 
-<div class="card">
-<img src="IMG_4845.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam101">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam101').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4845 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
+  <button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">
+    Adicionar ao Carrinho
+  </button>
 </div>
 
-<div class="card">
-<img src="IMG_4846.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam102">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam102').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4846 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
+
+<div class="card"><img src="IMG_4846.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4847.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4848.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4851.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4852.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4856.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
+<div class="card"><img src="IMG_4857.jpeg"><p class="nome-produto">Conjunto Lingerie</p><p class="preco">R$ 54,90</p><div class="tamanhos"><button onclick="selecionarTamanho(this)">P</button><button onclick="selecionarTamanho(this)">M</button><button onclick="selecionarTamanho(this)">G</button><button onclick="selecionarTamanho(this)">GG</button></div><button class="btn" onclick="addCarrinhoComTamanho(this,'Conjunto Lingerie',54.90)">Adicionar ao Carrinho</button></div>
+
 </div>
 
-<div class="card">
-<img src="IMG_4847.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam103">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam103').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4847 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_4848.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam104">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam104').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4848 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-<div class="card">
-<img src="IMG_4851.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam105">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam105').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4851 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_4852.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam106">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam106').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4852 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_4856.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam107">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam107').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4856 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_4857.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam108">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam108').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_4857 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5387.png">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam109">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam109').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5387 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-  <div class="card">
-<img src="IMG_5388.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam110">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam110').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5388 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5389.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam111">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam111').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5389 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5390.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam112">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam112').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5390 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5391.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam113">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam113').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5391 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5392.jpeg">
-<p>Conjunto Lingerie</p>
-<p class="preco">R$ 54,90</p>
-<select id="tam114">
-<option value="">Tamanho</option>
-<option>P</option><option>M</option><option>G</option><option>GG</option>
-</select>
-<button class="btn" onclick="
-let t=document.getElementById('tam114').value;
-if(t==''){alert('Selecione o tamanho');return;}
-addCarrinho('Conjunto IMG_5392 - Tam '+t,54.90)">
-Adicionar ao Carrinho
-</button>
-</div>
-
-<div class="card">
-<img src="IMG_5531.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_5531">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_5531 - Tam: '+document.getElementById('tamanho_IMG_5531').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5631.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_5631">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_5631 - Tam: '+document.getElementById('tamanho_IMG_5631').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5632.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_5632">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_5632 - Tam: '+document.getElementById('tamanho_IMG_5632').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5633.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_5633">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_5633 - Tam: '+document.getElementById('tamanho_IMG_5633').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_5766.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_5766">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_5766 - Tam: '+document.getElementById('tamanho_IMG_5766').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_6038.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_6038">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_6038 - Tam: '+document.getElementById('tamanho_IMG_6038').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_6039.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_6039">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_6039 - Tam: '+document.getElementById('tamanho_IMG_6039').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_6318.jpeg">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_6318">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_6318 - Tam: '+document.getElementById('tamanho_IMG_6318').value,54.90)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="card">
-<img src="IMG_6838.png">
-<h4>Conjunto Lingerie</h4>
-<p class="preco">R$ 54,90</p>
-<select id="tamanho_IMG_6838">
-<option value="P">P</option>
-<option value="M">M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-</select>
-<button class="btn" onclick="addCarrinho('Conjunto IMG_6838 - Tam: '+document.getElementById('tamanho_IMG_6838').value,54.90)">Adicionar ao Carrinho</button>
-</div>
   
   
 </div>
