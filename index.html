@@ -154,48 +154,54 @@ header{
 <p class="preco">R$ 49,90</p>
 <button class="btn" onclick="addCarrinho('Conjunto Lingerie IMG_4760',49.90)">Adicionar ao Carrinho</button>
 </div>
+  
 <style>
-.produtos-59 {
+.produtos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 15px;
+  margin-top: 20px;
 }
 
-.card-59 {
+.card {
   background: #fff;
-  border-radius: 15px;
   padding: 10px;
-  text-align: center;
-}
-
-.card-59 img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
   border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
-.card-59 h4 {
-  margin: 8px 0 5px;
-  font-size: 15px;
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.preco-59 {
+.nome-produto {
+  font-weight: bold;
+  color: #ff9ec4;
+  margin: 8px 0 4px;
+}
+
+.preco {
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-.btn-rosa {
-  background: #f8c8dc;
+.btn-carrinho {
+  background: #ff9ec4;
   border: none;
   padding: 8px;
   width: 100%;
-  border-radius: 20px;
-  cursor: pointer;
+  border-radius: 8px;
+  color: white;
   font-weight: bold;
+  cursor: pointer;
 }
-.btn-rosa:hover {
-  background: #f4a9c4;
+
+.btn-carrinho:hover {
+  background: #ff7eb3;
 }
 </style>
 
