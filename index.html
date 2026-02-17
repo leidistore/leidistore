@@ -8,29 +8,19 @@
 <style>
 body{
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background:#ffe6f0; /* rosa bebê */
+    font-family:'Segoe UI',sans-serif;
+    background:#ffe6f0;
 }
 
 header{
-    background:#ff1493; /* rosa forte */
+    background:#ff1493;
     color:white;
     text-align:center;
     padding:25px;
 }
 
-header h1{
-    margin:0;
-    font-size:28px;
-}
-
-header p{
-    margin-top:5px;
-    font-size:14px;
-}
-
 nav{
-    background:#ff69b4; /* rosa médio */
+    background:#ff69b4;
     text-align:center;
     padding:12px;
 }
@@ -58,11 +48,6 @@ nav button{
     border-radius:15px;
     box-shadow:0 6px 18px rgba(255,20,147,0.2);
     text-align:center;
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:scale(1.03);
 }
 
 .card img{
@@ -95,10 +80,6 @@ button.add{
     cursor:pointer;
 }
 
-button.add:hover{
-    background:#e60073;
-}
-
 #cart{
     background:white;
     padding:20px;
@@ -111,13 +92,37 @@ button.add:hover{
     display:none;
 }
 
-#cart h2{
-    color:#ff1493;
-}
-
 .total{
     font-weight:bold;
     color:#ff1493;
+    margin-top:10px;
+}
+
+.payments{
+    margin-top:15px;
+    font-size:14px;
+}
+
+.security{
+    margin-top:15px;
+    font-size:13px;
+    color:#555;
+    background:#fff0f6;
+    padding:10px;
+    border-radius:10px;
+}
+
+.whatsapp{
+    margin-top:15px;
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:12px;
+    width:100%;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
 }
 </style>
 </head>
@@ -126,7 +131,7 @@ button.add:hover{
 
 <header>
 <h1>Leidi Andrade Store</h1>
-<p>Lingerie com Estilo e Elegância</p>
+<p>Conjuntos Exclusivos 💖</p>
 </header>
 
 <nav>
@@ -139,43 +144,58 @@ button.add:hover{
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
 <h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
+
+<div class="payments">
+<strong>Formas de Pagamento:</strong><br>
+• Cartão de Crédito (via link)<br>
+• Cartão de Débito (via link)<br>
+• Pix<br>
+• Pagamento na Entrega
+</div>
+
+<button class="whatsapp" onclick="finalizarCompra()">
+Finalizar Pedido pelo WhatsApp
+</button>
+
+<div class="security">
+🔒 Compra 100% segura! Seus dados estão protegidos e o pagamento é realizado com total segurança.
+</div>
+
 </div>
 
 <script>
 
-const state={
-products:[
-{id:1,name:"Conjunto Básico Confort",price:54.90,image:"conjunto1.jpeg"},
-{id:2,name:"Conjunto Renda Luxo",price:54.90,image:"conjunto2.jpeg"},
-{id:3,name:"Conjunto Rosa Elegance",price:54.90,image:"conjunto3.jpeg"},
-{id:4,name:"Conjunto Lilás Premium",price:54.90,image:"conjunto4.jpeg"},
-{id:5,name:"Conjunto Rosa Delicado",price:54.90,image:"conjunto5.jpeg"},
-{id:6,name:"Conjunto Rosa Clássico",price:54.90,image:"conjunto6.jpeg"},
-{id:7,name:"Conjunto Renda Soft",price:54.90,image:"conjunto7.jpeg"},
-{id:8,name:"Conjunto Rosa Charm",price:54.90,image:"conjunto8.jpeg"}
-],
-cart:[]
-};
+const whatsappNumber = "5547996374475";
 
-// Tamanhos
-state.products=state.products.map(p=>{
-p.sizes=["P","M","G","GG"];
-return p;
-});
+const products = [
+{id:1,name:"Conjunto Elegance 1",price:59.90,image:"00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg"},
+{id:2,name:"Conjunto Elegance 2",price:59.90,image:"0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg"},
+{id:3,name:"Conjunto Elegance 3",price:59.90,image:"1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg"},
+{id:4,name:"Conjunto Elegance 4",price:59.90,image:"39c484dd-4065-4903-b31c-db20d078e97a.jpeg"},
+{id:5,name:"Conjunto Elegance 5",price:59.90,image:"46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg"},
+{id:6,name:"Conjunto Elegance 6",price:59.90,image:"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"},
+{id:7,name:"Conjunto Elegance 7",price:59.90,image:"IMG_4853.jpeg"},
+{id:8,name:"Conjunto Elegance 8",price:59.90,image:"IMG_4854.jpeg"},
+{id:9,name:"Conjunto Elegance 9",price:59.90,image:"IMG_4855.jpeg"},
+{id:10,name:"Conjunto Elegance 10",price:59.90,image:"IMG_4858.jpeg"},
+{id:11,name:"Conjunto Elegance 11",price:59.90,image:"IMG_4859.jpeg"},
+{id:12,name:"Conjunto Elegance 12",price:59.90,image:"IMG_4860.jpeg"}
+];
 
-const list=document.getElementById("productList");
+const sizes = ["P","M","G","GG"];
+const cart = [];
 
-state.products.forEach(p=>{
-list.innerHTML+=`
+const list = document.getElementById("productList");
+
+products.forEach(p=>{
+list.innerHTML += `
 <div class="card">
-<img src="${p.image}" alt="${p.name}">
+<img src="${p.image}">
 <h3>${p.name}</h3>
 <p class="price">R$ ${p.price.toFixed(2)}</p>
-
 <select id="size-${p.id}">
-${p.sizes.map(s=>`<option>${s}</option>`).join("")}
+${sizes.map(s=>`<option>${s}</option>`).join("")}
 </select>
-
 <br>
 <button class="add" onclick="addToCart(${p.id})">Adicionar</button>
 </div>
@@ -183,35 +203,49 @@ ${p.sizes.map(s=>`<option>${s}</option>`).join("")}
 });
 
 function addToCart(id){
-const product=state.products.find(p=>p.id===id);
-const size=document.getElementById("size-"+id).value;
-state.cart.push({...product,size});
+const product = products.find(p=>p.id===id);
+const size = document.getElementById("size-"+id).value;
+cart.push({...product,size});
 updateCart();
-alert("Produto adicionado ao carrinho 💖");
 }
 
 function updateCart(){
-document.getElementById("cartCount").innerText=state.cart.length;
-const container=document.getElementById("cartItems");
+document.getElementById("cartCount").innerText = cart.length;
+const container = document.getElementById("cartItems");
 container.innerHTML="";
 let total=0;
 
-state.cart.forEach(item=>{
+cart.forEach(item=>{
 total+=item.price;
-container.innerHTML+=`
-<div>${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}</div>
-`;
+container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
 });
 
-document.getElementById("cartTotal").innerText=total.toFixed(2);
+document.getElementById("cartTotal").innerText = total.toFixed(2);
 }
 
 function toggleCart(){
 document.getElementById("cart").classList.toggle("hidden");
 }
 
+function finalizarCompra(){
+if(cart.length === 0){
+alert("Seu carrinho está vazio 💕");
+return;
+}
+
+let mensagem = "Olá! Gostaria de finalizar meu pedido:%0A%0A";
+
+cart.forEach(item=>{
+mensagem += `• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
+});
+
+mensagem += `%0ATotal: R$ ${document.getElementById("cartTotal").innerText}%0A`;
+mensagem += "%0AForma de pagamento: ";
+
+window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`, "_blank");
+}
+
 </script>
 
 </body>
 </html>
-
