@@ -91,19 +91,6 @@ nav{text-align:center;margin:15px;}
 <div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
 <div class="products" id="fio14"></div>
   
-function filterCategory(categoryId){
-  // Esconde todas as seções
-  const sections = ['premium','promo','fio12','fio14','sutia','top','baby_doll','camisola','plus_size','cuecas','meias'];
-  sections.forEach(sec => {
-    const el = document.getElementById(sec);
-    if(el) el.parentElement.style.display = 'none'; // esconder a div inteira que inclui título e produtos
-  });
-
-  // Mostra a seção escolhida
-  const selected = document.getElementById(categoryId);
-  if(selected) selected.parentElement.style.display = 'block';
-}
-  
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
@@ -134,7 +121,6 @@ const cart=[];
 
 /* ================= CONJUNTOS 59,90 ================= */
 const premium=[
-"39c484dd-4065-4903-b31c-db20d078e97a.jpeg",
 "46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
 "897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
 "IMG_4853.jpeg","IMG_4854.jpeg","IMG_4855.jpeg",
@@ -164,7 +150,7 @@ const promo=[
 "IMG_5644.jpeg","IMG_5686.png","IMG_5766.png",
 "IMG_6038.png","IMG_6039.png","IMG_6318.jpeg","IMG_6838.png"
 ];
-
+  
   /* ================= FIO 12 – TANGA ================= */
 const fio12_tanga = [
   "IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
@@ -174,7 +160,6 @@ const fio12_tanga = [
   "IMG_5102.jpeg","IMG_5103.jpeg",
   "IMG_5373.png"
 ];
-
   /* ================= FIO 12 – NOVO ================= */
 const fio12_novo = [
   "IMG_4886.jpeg","IMG_4887.jpeg","IMG_4888.jpeg","IMG_4890.jpeg","IMG_4891.jpeg",
@@ -187,15 +172,14 @@ const fio12_novo = [
   "IMG_5663.png","IMG_5868.png","IMG_5886.png","IMG_5887.png","IMG_6001.png",
   "IMG_6011.png","IMG_6309.jpeg","IMG_6696.png","IMG_6697.png","IMG_7431.jpeg",
   "IMG_7945.jpeg"
-];
-  
+]; 
 /* ================= FIO 14 ================= */
 const fio14=[
 "44af326e-0d1c-4012-9b5d-155295963713.jpeg",
 "45718d1c-5381-4106-8fce-b26188774a14.jpeg",
 "8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
 ];
-
+  
 function render(lista,containerId,preco,label){
 const container=document.getElementById(containerId);
 lista.forEach((img,index)=>{
