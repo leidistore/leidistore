@@ -6,30 +6,84 @@
 <title>Leidi Andrade Store</title>
 
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f0;}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
 header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
-header h1{margin:0;font-size:28px;}
-header p{margin:8px 0 0 0;font-size:15px;}
-.apresentacao{
-    margin-top:10px;
-    font-size:14px;
-    font-style:italic;
-    opacity:0.95;
+header h1{margin:0;font-size:30px;}
+.apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
+.section-title{
+text-align:center;
+margin:30px 0 10px;
+font-size:22px;
+color:#ff1493;
+font-weight:bold;
 }
-nav{background:#ff69b4;text-align:center;padding:12px;}
-nav button{background:white;border:none;color:#ff1493;padding:8px 15px;border-radius:20px;font-weight:bold;cursor:pointer;}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:25px;}
-.card{background:white;padding:15px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);text-align:center;}
-.card img{width:100%;height:260px;object-fit:cover;border-radius:12px;}
-.price{font-size:18px;color:#ff1493;font-weight:bold;margin:8px 0;}
-select{padding:6px;border-radius:8px;border:1px solid #ff69b4;}
-button.add{background:#ff1493;color:white;border:none;padding:8px 15px;border-radius:20px;margin-top:10px;cursor:pointer;}
-#cart{background:white;padding:20px;margin:20px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 6px 18px rgba(255,20,147,0.2);
+text-align:center;
+}
+.card img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:12px;
+}
+.price{
+font-size:18px;
+color:#ff1493;
+font-weight:bold;
+margin:8px 0;
+}
+.badge{
+background:#ff1493;
+color:white;
+font-size:12px;
+padding:4px 8px;
+border-radius:12px;
+display:inline-block;
+margin-bottom:5px;
+}
+select{
+padding:6px;
+border-radius:8px;
+border:1px solid #ff69b4;
+}
+button{
+background:#ff1493;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:20px;
+margin-top:10px;
+cursor:pointer;
+}
+#cart{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:15px;
+box-shadow:0 6px 18px rgba(255,20,147,0.2);
+}
 .hidden{display:none;}
-.total{font-weight:bold;color:#ff1493;margin-top:10px;}
-.payments{margin-top:15px;font-size:14px;}
-.security{margin-top:15px;font-size:13px;color:#555;background:#fff0f6;padding:10px;border-radius:10px;}
-.whatsapp{margin-top:15px;background:#25D366;color:white;border:none;padding:12px;width:100%;border-radius:25px;font-weight:bold;cursor:pointer;font-size:15px;}
+.whatsapp{
+margin-top:15px;
+background:#25D366;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -37,106 +91,109 @@ button.add{background:#ff1493;color:white;border:none;padding:8px 15px;border-ra
 
 <header>
 <h1>Leidi Andrade Store</h1>
-<p>Conjuntos Exclusivos 💖</p>
 <div class="apresentacao">
-✨ Bem-vinda à Leidi Andrade Store! Trabalhamos com lingeries selecionadas, qualidade premium e preços acessíveis para valorizar ainda mais sua beleza. ✨
+✨ Peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
 </div>
 </header>
 
-<nav>
+<div style="text-align:center;margin-top:15px;">
 <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
-</nav>
+</div>
 
-<div class="products" id="productList"></div>
+<div class="section-title">✨ Conjuntos Premium – R$ 59,90</div>
+<div class="products" id="premium"></div>
+
+<div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
+<div class="products" id="promo"></div>
 
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
-<h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
+<h3>Total: R$ <span id="cartTotal">0.00</span></h3>
 
-<div class="payments">
-<strong>Formas de Pagamento:</strong><br>
-• Cartão de Crédito (via link)<br>
-• Cartão de Débito (via link)<br>
-• Pix<br>
-• Pagamento na Entrega
-</div>
+<p><strong>Formas de Pagamento:</strong><br>
+Cartão Crédito/Débito (via link) • Pix • Pagamento na Entrega</p>
 
-<button class="whatsapp" onclick="finalizarCompra()">
-Finalizar Pedido pelo WhatsApp
-</button>
+<button class="whatsapp" onclick="finalizarCompra()">Finalizar pelo WhatsApp</button>
 
-<div class="security">
-🔒 Compra 100% segura! Seus dados estão protegidos e o pagamento é realizado com total segurança.
-</div>
+<p style="margin-top:10px;font-size:13px;">
+🔒 Compra 100% segura! Seus dados estão protegidos.
+</p>
 </div>
 
 <script>
 
-const whatsappNumber = "5547996374475";
+const whatsappNumber="5547996374475";
 
-const imageFiles = [
+/* ===== PREMIUM 59,90 (SEM REPETIÇÃO) ===== */
+const premium=[
 "00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
 "0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg",
 "1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg",
 "39c484dd-4065-4903-b31c-db20d078e97a.jpeg",
 "46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
-"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
-"IMG_4853.jpeg","IMG_4854.jpeg","IMG_4855.jpeg",
-"IMG_4858.jpeg","IMG_4859.jpeg","IMG_4860.jpeg",
-"IMG_4861.jpeg","IMG_4862.jpeg","IMG_4863.jpeg",
-"IMG_4864.jpeg","IMG_4865.jpeg","IMG_4866.jpeg",
-"IMG_4867.jpeg","IMG_4868.jpeg","IMG_4869.jpeg",
-"IMG_4877.jpeg","IMG_4878.jpeg","IMG_4879.jpeg",
-"IMG_4880.jpeg","IMG_4881.jpeg","IMG_4882.jpeg","IMG_4883.jpeg",
-"IMG_5204.png","IMG_5205.png",
-"IMG_5644.jpeg","IMG_5645.jpeg",
-"IMG_5684.png","IMG_5685.png",
-"IMG_6045.png","IMG_6372.png","IMG_6785.jpeg",
-"IMG_6837.png",
-"bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg",
-"dbf13977-992d-450f-b665-88729d9544c8.jpeg",
-"e6257a94-4339-406e-850d-a62f86c56d63.jpeg",
-"f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
+"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"
 ];
 
-const sizes = ["P","M","G","GG"];
-const cart = [];
-const list = document.getElementById("productList");
+/* ===== OFERTA 54,90 (APENAS ESSAS) ===== */
+const promo=[
+"IMG_4845.jpeg","IMG_4846.jpeg","IMG_4847.jpeg","IMG_4848.jpeg",
+"IMG_4851.jpeg","IMG_4852.jpeg","IMG_4856.jpeg","IMG_4857.jpeg",
+"IMG_5387.png","IMG_5388.jpeg","IMG_5389.jpeg","IMG_5390.jpeg",
+"IMG_5391.jpeg","IMG_5392.jpeg","IMG_5393.jpeg","IMG_5394.jpeg",
+"IMG_5531.png","IMG_5631.png","IMG_5632.png","IMG_5633.png",
+"IMG_5644.jpeg","IMG_5686.png","IMG_5766.png",
+"IMG_6038.png","IMG_6039.png","IMG_6318.jpeg","IMG_6838.png"
+];
 
-imageFiles.forEach((img,index)=>{
-list.innerHTML += `
+const sizes=["P","M","G","GG"];
+const cart=[];
+
+function renderProdutos(lista,containerId,preco){
+const container=document.getElementById(containerId);
+lista.forEach((img,index)=>{
+container.innerHTML+=`
 <div class="card">
+${preco==54.90?'<div class="badge">OFERTA</div>':''}
 <img src="${img}">
-<h3>Conjunto ${index+1}</h3>
-<p class="price">R$ 59,90</p>
-<select id="size-${index}">
+<h3>Modelo ${index+1}</h3>
+<p class="price">R$ ${preco.toFixed(2)}</p>
+<select id="${containerId}-size-${index}">
 ${sizes.map(s=>`<option>${s}</option>`).join("")}
-</select>
-<br>
-<button class="add" onclick="addToCart(${index})">Adicionar</button>
+</select><br>
+<button onclick="addToCart('${containerId}',${index},${preco})">
+Adicionar
+</button>
 </div>
 `;
 });
+}
 
-function addToCart(index){
-const size = document.getElementById("size-"+index).value;
-cart.push({name:"Conjunto "+(index+1),price:59.90,size});
+renderProdutos(premium,"premium",59.90);
+renderProdutos(promo,"promo",54.90);
+
+function addToCart(tipo,index,preco){
+const size=document.getElementById(`${tipo}-size-${index}`).value;
+cart.push({
+name:`${tipo=="premium"?"Premium":"Oferta"} Modelo ${index+1}`,
+price:preco,
+size:size
+});
 updateCart();
 }
 
 function updateCart(){
-document.getElementById("cartCount").innerText = cart.length;
-const container = document.getElementById("cartItems");
+document.getElementById("cartCount").innerText=cart.length;
+const container=document.getElementById("cartItems");
 container.innerHTML="";
 let total=0;
 
 cart.forEach(item=>{
 total+=item.price;
-container.innerHTML+=`${item.name} - ${item.size} - R$ 59,90<br>`;
+container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
 });
 
-document.getElementById("cartTotal").innerText = total.toFixed(2);
+document.getElementById("cartTotal").innerText=total.toFixed(2);
 }
 
 function toggleCart(){
@@ -144,12 +201,12 @@ document.getElementById("cart").classList.toggle("hidden");
 }
 
 function finalizarCompra(){
-if(cart.length===0){alert("Seu carrinho está vazio 💕");return;}
-let mensagem="Olá! Gostaria de finalizar meu pedido:%0A%0A";
+if(cart.length===0){alert("Carrinho vazio 💕");return;}
+let mensagem="Olá! Quero finalizar meu pedido:%0A%0A";
 cart.forEach(item=>{
-mensagem+=`• ${item.name} - ${item.size} - R$ 59,90%0A`;
+mensagem+=`• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
 });
-mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}%0A`;
+mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
 window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`,"_blank");
 }
 
