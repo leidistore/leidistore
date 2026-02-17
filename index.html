@@ -8,63 +8,116 @@
 <style>
 body{
     margin:0;
-    font-family:Arial;
-    background:#fff0f5;
+    font-family: 'Segoe UI', sans-serif;
+    background:#ffe6f0; /* rosa bebê */
 }
+
 header{
-    background:#e91e63;
+    background:#ff1493; /* rosa forte */
     color:white;
     text-align:center;
-    padding:20px;
+    padding:25px;
 }
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+header p{
+    margin-top:5px;
+    font-size:14px;
+}
+
 nav{
-    background:#c2185b;
+    background:#ff69b4; /* rosa médio */
     text-align:center;
-    padding:10px;
+    padding:12px;
 }
+
 nav button{
-    background:none;
+    background:white;
     border:none;
-    color:white;
-    margin:5px;
+    color:#ff1493;
+    padding:8px 15px;
+    border-radius:20px;
     font-weight:bold;
     cursor:pointer;
 }
+
 .products{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    padding:20px;
+    padding:25px;
 }
+
 .card{
     background:white;
     padding:15px;
-    border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(255,20,147,0.2);
     text-align:center;
+    transition:0.3s;
 }
+
+.card:hover{
+    transform:scale(1.03);
+}
+
 .card img{
     width:100%;
     height:260px;
     object-fit:cover;
-    border-radius:8px;
+    border-radius:12px;
 }
-button{
-    background:#e91e63;
+
+.price{
+    font-size:18px;
+    color:#ff1493;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+select{
+    padding:6px;
+    border-radius:8px;
+    border:1px solid #ff69b4;
+}
+
+button.add{
+    background:#ff1493;
     color:white;
     border:none;
-    padding:8px 12px;
-    border-radius:5px;
+    padding:8px 15px;
+    border-radius:20px;
+    margin-top:10px;
     cursor:pointer;
 }
+
+button.add:hover{
+    background:#e60073;
+}
+
 #cart{
     background:white;
     padding:20px;
     margin:20px;
-    border-radius:10px;
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(255,20,147,0.2);
 }
+
 .hidden{
     display:none;
+}
+
+#cart h2{
+    color:#ff1493;
+}
+
+.total{
+    font-weight:bold;
+    color:#ff1493;
 }
 </style>
 </head>
@@ -85,26 +138,26 @@ button{
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
-<h3>Total: R$ <span id="cartTotal">0.00</span></h3>
+<h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
 </div>
 
 <script>
 
 const state={
 products:[
-{id:1,name:"Conjunto Básico Confort",price:49.90,image:"imagens/conjunto1.jpg"},
-{id:2,name:"Conjunto Renda Luxo",price:49.90,image:"imagens/conjunto2.jpg"},
-{id:3,name:"Conjunto Rosa Elegance",price:49.90,image:"imagens/conjunto3.jpg"},
-{id:4,name:"Conjunto Lilás Premium",price:49.90,image:"imagens/conjunto4.jpg"},
-{id:5,name:"Conjunto Rosa Delicado",price:49.90,image:"imagens/conjunto5.jpg"},
-{id:6,name:"Conjunto Rosa Clássico",price:49.90,image:"imagens/conjunto6.jpg"},
-{id:7,name:"Conjunto Renda Soft",price:49.90,image:"imagens/conjunto7.jpg"},
-{id:8,name:"Conjunto Rosa Charm",price:49.90,image:"imagens/conjunto8.jpg"}
+{id:1,name:"Conjunto Básico Confort",price:54.90,image:"conjunto1.jpeg"},
+{id:2,name:"Conjunto Renda Luxo",price:54.90,image:"conjunto2.jpeg"},
+{id:3,name:"Conjunto Rosa Elegance",price:54.90,image:"conjunto3.jpeg"},
+{id:4,name:"Conjunto Lilás Premium",price:54.90,image:"conjunto4.jpeg"},
+{id:5,name:"Conjunto Rosa Delicado",price:54.90,image:"conjunto5.jpeg"},
+{id:6,name:"Conjunto Rosa Clássico",price:54.90,image:"conjunto6.jpeg"},
+{id:7,name:"Conjunto Renda Soft",price:54.90,image:"conjunto7.jpeg"},
+{id:8,name:"Conjunto Rosa Charm",price:54.90,image:"conjunto8.jpeg"}
 ],
 cart:[]
 };
 
-// Tamanhos padrão
+// Tamanhos
 state.products=state.products.map(p=>{
 p.sizes=["P","M","G","GG"];
 return p;
@@ -117,13 +170,14 @@ list.innerHTML+=`
 <div class="card">
 <img src="${p.image}" alt="${p.name}">
 <h3>${p.name}</h3>
-<p><strong>R$ ${p.price.toFixed(2)}</strong></p>
+<p class="price">R$ ${p.price.toFixed(2)}</p>
 
 <select id="size-${p.id}">
 ${p.sizes.map(s=>`<option>${s}</option>`).join("")}
 </select>
-<br><br>
-<button onclick="addToCart(${p.id})">Adicionar</button>
+
+<br>
+<button class="add" onclick="addToCart(${p.id})">Adicionar</button>
 </div>
 `;
 });
@@ -133,7 +187,7 @@ const product=state.products.find(p=>p.id===id);
 const size=document.getElementById("size-"+id).value;
 state.cart.push({...product,size});
 updateCart();
-alert("Produto adicionado!");
+alert("Produto adicionado ao carrinho 💖");
 }
 
 function updateCart(){
