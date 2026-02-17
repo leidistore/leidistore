@@ -6,6 +6,29 @@
 <title>Leidi Andrade Store</title>
 
 <style>
+.categories{
+  text-align:center;
+  margin:15px 0;
+  flex-wrap: wrap;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap: wrap;
+}
+.categories button{
+  background:#ff1493;
+  color:white;
+  border:none;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  transition: 0.3s;
+}
+.categories button:hover{
+  background:#ff69b4;
+}
+  
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
 header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
 header h1{margin:0;font-size:32px;}
@@ -35,7 +58,19 @@ nav{text-align:center;margin:15px;}
 ✨ Trabalhamos com peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
 </div>
 </header>
-
+  
+<div class="categories">
+  <button onclick="filterCategory('premium')">Conjuntos</button>
+  <button onclick="filterCategory('fio12')">Calcinhas</button>
+  <button onclick="filterCategory('sutia')">Sutiã</button>
+  <button onclick="filterCategory('top')">Top</button>
+  <button onclick="filterCategory('baby_doll')">Baby Doll</button>
+  <button onclick="filterCategory('camisola')">Camisola</button>
+  <button onclick="filterCategory('plus_size')">Plus Size</button>
+  <button onclick="filterCategory('cuecas')">Cuecas</button>
+  <button onclick="filterCategory('meias')">Meias</button>
+</div>
+  
 <nav>
 <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
@@ -55,7 +90,20 @@ nav{text-align:center;margin:15px;}
 <!-- FIO 14 -->
 <div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
 <div class="products" id="fio14"></div>
+  
+function filterCategory(categoryId){
+  // Esconde todas as seções
+  const sections = ['premium','promo','fio12','fio14','sutia','top','baby_doll','camisola','plus_size','cuecas','meias'];
+  sections.forEach(sec => {
+    const el = document.getElementById(sec);
+    if(el) el.parentElement.style.display = 'none'; // esconder a div inteira que inclui título e produtos
+  });
 
+  // Mostra a seção escolhida
+  const selected = document.getElementById(categoryId);
+  if(selected) selected.parentElement.style.display = 'block';
+}
+  
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
@@ -117,16 +165,30 @@ const promo=[
 "IMG_6038.png","IMG_6039.png","IMG_6318.jpeg","IMG_6838.png"
 ];
 
-/* ================= TANGA 12 ================= */
-const tanga12=[
-"IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
-"IMG_5093.jpeg","IMG_5094.jpeg",
-"IMG_5098.jpeg","IMG_5099.jpeg",
-"IMG_5100.jpeg","IMG_5101.jpeg",
-"IMG_5102.jpeg","IMG_5103.jpeg",
-"IMG_5373.png"
+  /* ================= FIO 12 – TANGA ================= */
+const fio12_tanga = [
+  "IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
+  "IMG_5093.jpeg","IMG_5094.jpeg",
+  "IMG_5098.jpeg","IMG_5099.jpeg",
+  "IMG_5100.jpeg","IMG_5101.jpeg",
+  "IMG_5102.jpeg","IMG_5103.jpeg",
+  "IMG_5373.png"
 ];
 
+  /* ================= FIO 12 – NOVO ================= */
+const fio12_novo = [
+  "IMG_4886.jpeg","IMG_4887.jpeg","IMG_4888.jpeg","IMG_4890.jpeg","IMG_4891.jpeg",
+  "IMG_4892.jpeg","IMG_4895.jpeg","IMG_4896.jpeg","IMG_4897.jpeg","IMG_4898.jpeg",
+  "IMG_4899.jpeg","IMG_4902.jpeg","IMG_4903.jpeg","IMG_4904.jpeg","IMG_4905.jpeg",
+  "IMG_4906.jpeg","IMG_4907.jpeg","IMG_4908.jpeg","IMG_4909.jpeg","IMG_4910.jpeg",
+  "IMG_4911.jpeg","IMG_4912.jpeg","IMG_4913.jpeg","IMG_4914.jpeg","IMG_4915.jpeg",
+  "IMG_4916.jpeg","IMG_4917.jpeg","IMG_4918.jpeg","IMG_4919.jpeg","IMG_4920.jpeg",
+  "IMG_4921.jpeg","IMG_4922.jpeg","IMG_4923.jpeg",
+  "IMG_5663.png","IMG_5868.png","IMG_5886.png","IMG_5887.png","IMG_6001.png",
+  "IMG_6011.png","IMG_6309.jpeg","IMG_6696.png","IMG_6697.png","IMG_7431.jpeg",
+  "IMG_7945.jpeg"
+];
+  
 /* ================= FIO 14 ================= */
 const fio14=[
 "44af326e-0d1c-4012-9b5d-155295963713.jpeg",
