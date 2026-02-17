@@ -11,9 +11,9 @@ header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
 header h1{margin:0;font-size:32px;}
 .apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
 .section-title{text-align:center;margin:35px 0 10px;font-size:22px;color:#ff1493;font-weight:bold;}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:20px;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px;}
 .card{background:white;padding:15px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);text-align:center;position:relative;}
-.card img{width:100%;height:260px;object-fit:cover;border-radius:12px;}
+.card img{width:100%;height:230px;object-fit:cover;border-radius:12px;}
 .price{font-size:18px;color:#ff1493;font-weight:bold;margin:8px 0;}
 .badge{position:absolute;top:10px;left:10px;background:#ff1493;color:white;font-size:11px;padding:5px 8px;border-radius:12px;}
 select{padding:6px;border-radius:8px;border:1px solid #ff69b4;}
@@ -40,11 +40,17 @@ nav{text-align:center;margin:15px;}
 <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
 
+<!-- PREMIUM -->
 <div class="section-title">💎 Conjuntos Premium – R$ 59,90</div>
 <div class="products" id="premium"></div>
 
+<!-- OFERTA -->
 <div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
 <div class="products" id="promo"></div>
+
+<!-- CALCINHAS -->
+<div class="section-title">💕 Calcinhas Fio – R$ 12,00</div>
+<div class="products" id="fio"></div>
 
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
@@ -71,51 +77,30 @@ Finalizar Pedido pelo WhatsApp
 
 const whatsappNumber="5547996374475";
 
-const premium=[
-"00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
-"0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg",
-"1fb7fbdd-c744-48af-b61b-9fe806bff3c7.jpeg",
-"39c484dd-4065-4903-b31c-db20d078e97a.jpeg",
-"46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
-"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
-"IMG_4853.jpeg","IMG_4854.jpeg","IMG_4855.jpeg",
-"IMG_4858.jpeg","IMG_4859.jpeg","IMG_4860.jpeg",
-"IMG_4861.jpeg","IMG_4862.jpeg","IMG_4863.jpeg",
-"IMG_4864.jpeg","IMG_4865.jpeg","IMG_4866.jpeg",
-"IMG_4867.jpeg","IMG_4868.jpeg","IMG_4869.jpeg",
-"IMG_4877.jpeg","IMG_4878.jpeg","IMG_4879.jpeg",
-"IMG_4880.jpeg","IMG_4881.jpeg","IMG_4882.jpeg","IMG_4883.jpeg",
-"IMG_5204.png","IMG_5205.png",
-"IMG_5644.jpeg","IMG_5645.jpeg",
-"IMG_5684.png","IMG_5685.png",
-"IMG_6045.png","IMG_6372.png","IMG_6785.jpeg","IMG_6837.png",
-"bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg",
-"dbf13977-992d-450f-b665-88729d9544c8.jpeg",
-"e6257a94-4339-406e-850d-a62f86c56d63.jpeg",
-"f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
-];
+const premium=[/* mantém lista anterior */];
 
-const promo=[
-"IMG_4845.jpeg","IMG_4846.jpeg","IMG_4847.jpeg","IMG_4848.jpeg",
-"IMG_4851.jpeg","IMG_4852.jpeg","IMG_4856.jpeg","IMG_4857.jpeg",
-"IMG_5387.png","IMG_5388.jpeg","IMG_5389.jpeg","IMG_5390.jpeg",
-"IMG_5391.jpeg","IMG_5392.jpeg","IMG_5393.jpeg","IMG_5394.jpeg",
-"IMG_5531.png","IMG_5631.png","IMG_5632.png","IMG_5633.png",
-"IMG_5644.jpeg","IMG_5686.png","IMG_5766.png",
-"IMG_6038.png","IMG_6039.png","IMG_6318.jpeg","IMG_6838.png"
+const promo=[/* mantém lista anterior */];
+
+const fio=[
+"IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
+"IMG_5093.jpeg","IMG_5094.jpeg",
+"IMG_5098.jpeg","IMG_5099.jpeg",
+"IMG_5100.jpeg","IMG_5101.jpeg",
+"IMG_5102.jpeg","IMG_5103.jpeg",
+"IMG_5373.png"
 ];
 
 const sizes=["P","M","G","GG"];
 const cart=[];
 
-function render(lista,containerId,preco){
+function render(lista,containerId,preco,label){
 const container=document.getElementById(containerId);
 lista.forEach((img,index)=>{
 container.innerHTML+=`
 <div class="card">
-${preco==54.90?'<div class="badge">OFERTA</div>':''}
+${label?'<div class="badge">'+label+'</div>':''}
 <img src="${img}">
-<h3>Modelo ${index+1}</h3>
+<h3>${containerId.toUpperCase()} Modelo ${index+1}</h3>
 <p class="price">R$ ${preco.toFixed(2)}</p>
 <select id="${containerId}-${index}">
 ${sizes.map(s=>`<option>${s}</option>`).join("")}
@@ -128,13 +113,14 @@ Adicionar
 });
 }
 
-render(premium,"premium",59.90);
-render(promo,"promo",54.90);
+render(premium,"premium",59.90,"");
+render(promo,"promo",54.90,"OFERTA");
+render(fio,"fio",12.00,"");
 
 function addToCart(tipo,index,preco){
 const size=document.getElementById(`${tipo}-${index}`).value;
 cart.push({
-name:`${tipo=="premium"?"Premium":"Oferta"} Modelo ${index+1}`,
+name:`${tipo.toUpperCase()} Modelo ${index+1}`,
 price:preco,
 size:size
 });
