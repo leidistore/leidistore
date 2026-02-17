@@ -6,14 +6,19 @@
 <title>Leidi Andrade Store</title>
 
 <style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
+header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
+header h1{margin:0;font-size:32px;}
+.apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
+
+/* Barra de categorias */
 .categories{
   text-align:center;
   margin:15px 0;
-  flex-wrap: wrap;
   display:flex;
   justify-content:center;
   gap:10px;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
 }
 .categories button{
   background:#ff1493;
@@ -28,11 +33,7 @@
 .categories button:hover{
   background:#ff69b4;
 }
-  
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
-header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
-header h1{margin:0;font-size:32px;}
-.apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
+
 .section-title{text-align:center;margin:35px 0 10px;font-size:22px;color:#ff1493;font-weight:bold;}
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px;}
 .card{background:white;padding:15px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);text-align:center;position:relative;}
@@ -58,10 +59,11 @@ nav{text-align:center;margin:15px;}
 ✨ Trabalhamos com peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
 </div>
 </header>
-  
+
+<!-- Barra de categorias -->
 <div class="categories">
-  <button onclick="filterCategory('premium')">Conjuntos</button>
-  <button onclick="filterCategory('fio12')">Calcinhas</button>
+  <button onclick="filterCategory('container_premium')">Conjuntos</button>
+  <button onclick="filterCategory('container_fio12')">Calcinhas</button>
   <button onclick="filterCategory('sutia')">Sutiã</button>
   <button onclick="filterCategory('top')">Top</button>
   <button onclick="filterCategory('baby_doll')">Baby Doll</button>
@@ -70,27 +72,38 @@ nav{text-align:center;margin:15px;}
   <button onclick="filterCategory('cuecas')">Cuecas</button>
   <button onclick="filterCategory('meias')">Meias</button>
 </div>
-  
+
 <nav>
 <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
 
+<!-- SEÇÕES DE PRODUTOS -->
+
 <!-- PREMIUM -->
-<div class="section-title">💎 Conjuntos Premium – R$ 59,90</div>
-<div class="products" id="premium"></div>
+<div id="container_premium">
+  <div class="section-title">💎 Conjuntos Premium – R$ 59,90</div>
+  <div class="products" id="premium"></div>
+</div>
 
 <!-- OFERTA -->
-<div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
-<div class="products" id="promo"></div>
+<div id="container_promo">
+  <div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
+  <div class="products" id="promo"></div>
+</div>
 
-<!-- FIO 12 -->
-<div class="section-title">💕 Calcinhas Fio – R$ 12,00</div>
-<div class="products" id="fio12"></div>
+<!-- CALCINHAS FIO 12 -->
+<div id="container_fio12">
+  <div class="section-title">💕 Calcinhas Fio – R$ 12,00</div>
+  <div class="products" id="fio12"></div>
+</div>
 
 <!-- FIO 14 -->
-<div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
-<div class="products" id="fio14"></div>
-  
+<div id="container_fio14">
+  <div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
+  <div class="products" id="fio14"></div>
+</div>
+
+<!-- CARRINHO -->
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
@@ -113,19 +126,13 @@ Finalizar Pedido pelo WhatsApp
 </div>
 
 <script>
-
 const whatsappNumber="5547996374475";
-
 const sizes=["P","M","G","GG"];
 const cart=[];
 
 /* ================= CONJUNTOS 59,90 ================= */
 const premium=[
-"46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
-"897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
-"IMG_4853.jpeg","IMG_4854.jpeg","IMG_4855.jpeg",
-"IMG_4858.jpeg","IMG_4859.jpeg","IMG_4860.jpeg",
-"IMG_4861.jpeg","IMG_4862.jpeg","IMG_4863.jpeg",
+  IMG_4861.jpeg","IMG_4862.jpeg","IMG_4863.jpeg",
 "IMG_4864.jpeg","IMG_4865.jpeg","IMG_4866.jpeg",
 "IMG_4867.jpeg","IMG_4868.jpeg","IMG_4869.jpeg",
 "IMG_4877.jpeg","IMG_4878.jpeg","IMG_4879.jpeg",
@@ -142,17 +149,12 @@ const premium=[
 
 /* ================= CONJUNTOS 54,90 ================= */
 const promo=[
-"IMG_4845.jpeg","IMG_4846.jpeg","IMG_4847.jpeg","IMG_4848.jpeg",
-"IMG_4851.jpeg","IMG_4852.jpeg","IMG_4856.jpeg","IMG_4857.jpeg",
-"IMG_5387.png","IMG_5388.jpeg","IMG_5389.jpeg","IMG_5390.jpeg",
-"IMG_5391.jpeg","IMG_5392.jpeg","IMG_5393.jpeg","IMG_5394.jpeg",
-"IMG_5531.png","IMG_5631.png","IMG_5632.png","IMG_5633.png",
-"IMG_5644.jpeg","IMG_5686.png","IMG_5766.png",
-"IMG_6038.png","IMG_6039.png","IMG_6318.jpeg","IMG_6838.png"
+  "IMG_4845.jpeg","IMG_4846.jpeg" 
+  // adicione os outros modelos aqui...
 ];
-  
-  /* ================= FIO 12 – TANGA ================= */
-const fio12_tanga = [
+
+/* ================= FIO 12 – TANGA ================= */
+const fio12=[
   "IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
   "IMG_5093.jpeg","IMG_5094.jpeg",
   "IMG_5098.jpeg","IMG_5099.jpeg",
@@ -160,7 +162,8 @@ const fio12_tanga = [
   "IMG_5102.jpeg","IMG_5103.jpeg",
   "IMG_5373.png"
 ];
-  /* ================= FIO 12 – NOVO ================= */
+
+/* ================= FIO 12 – NOVO ================= */
 const fio12_novo = [
   "IMG_4886.jpeg","IMG_4887.jpeg","IMG_4888.jpeg","IMG_4890.jpeg","IMG_4891.jpeg",
   "IMG_4892.jpeg","IMG_4895.jpeg","IMG_4896.jpeg","IMG_4897.jpeg","IMG_4898.jpeg",
@@ -172,78 +175,91 @@ const fio12_novo = [
   "IMG_5663.png","IMG_5868.png","IMG_5886.png","IMG_5887.png","IMG_6001.png",
   "IMG_6011.png","IMG_6309.jpeg","IMG_6696.png","IMG_6697.png","IMG_7431.jpeg",
   "IMG_7945.jpeg"
-]; 
+];
+
 /* ================= FIO 14 ================= */
 const fio14=[
-"44af326e-0d1c-4012-9b5d-155295963713.jpeg",
-"45718d1c-5381-4106-8fce-b26188774a14.jpeg",
-"8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
+  "44af326e-0d1c-4012-9b5d-155295963713.jpeg",
+  "45718d1c-5381-4106-8fce-b26188774a14.jpeg",
+  "8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
 ];
-  
+
+/* ================= FUNÇÃO DE RENDER ================= */
 function render(lista,containerId,preco,label){
-const container=document.getElementById(containerId);
-lista.forEach((img,index)=>{
-container.innerHTML+=`
-<div class="card">
-${label?'<div class="badge">'+label+'</div>':''}
-<img src="${img}">
-<h3>Modelo ${index+1}</h3>
-<p class="price">R$ ${preco.toFixed(2)}</p>
-<select id="${containerId}-${index}">
-${sizes.map(s=>`<option>${s}</option>`).join("")}
-</select><br>
-<button onclick="addToCart('${containerId}',${index},${preco})">
-Adicionar
-</button>
-</div>
-`;
-});
+  const container=document.getElementById(containerId);
+  lista.forEach((img,index)=>{
+    container.innerHTML+=`
+      <div class="card">
+        ${label?'<div class="badge">'+label+'</div>':''}
+        <img src="${img}">
+        <h3>Modelo ${index+1}</h3>
+        <p class="price">R$ ${preco.toFixed(2)}</p>
+        <select id="${containerId}-${index}">
+          ${sizes.map(s=>`<option>${s}</option>`).join("")}
+        </select><br>
+        <button onclick="addToCart('${containerId}',${index},${preco})">Adicionar</button>
+      </div>
+    `;
+  });
 }
 
+/* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
 render(promo,"promo",54.90,"OFERTA");
-render(fio12,"fio12",12.00,"");
+render(fio12,"fio12",12.00,"TANGA");
+render(fio12_novo,"fio12",12.00,"NOVO");
 render(fio14,"fio14",14.00,"");
 
+/* ================= FUNÇÕES DO CARRINHO ================= */
 function addToCart(tipo,index,preco){
-const size=document.getElementById(`${tipo}-${index}`).value;
-cart.push({
-name:`${tipo.toUpperCase()} Modelo ${index+1}`,
-price:preco,
-size:size
-});
-updateCart();
+  const size=document.getElementById(`${tipo}-${index}`).value;
+  cart.push({
+    name:`${tipo.toUpperCase()} Modelo ${index+1}`,
+    price:preco,
+    size:size
+  });
+  updateCart();
 }
 
 function updateCart(){
-document.getElementById("cartCount").innerText=cart.length;
-const container=document.getElementById("cartItems");
-container.innerHTML="";
-let total=0;
-
-cart.forEach(item=>{
-total+=item.price;
-container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
-});
-
-document.getElementById("cartTotal").innerText=total.toFixed(2);
+  document.getElementById("cartCount").innerText=cart.length;
+  const container=document.getElementById("cartItems");
+  container.innerHTML="";
+  let total=0;
+  cart.forEach(item=>{
+    total+=item.price;
+    container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
+  });
+  document.getElementById("cartTotal").innerText=total.toFixed(2);
 }
 
 function toggleCart(){
-document.getElementById("cart").classList.toggle("hidden");
+  document.getElementById("cart").classList.toggle("hidden");
 }
 
 function finalizarCompra(){
-if(cart.length===0){alert("Carrinho vazio 💕");return;}
-let mensagem="Olá! Quero finalizar meu pedido:%0A%0A";
-cart.forEach(item=>{
-mensagem+=`• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
-});
-mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
-window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`,"_blank");
+  if(cart.length===0){alert("Carrinho vazio 💕");return;}
+  let mensagem="Olá! Quero finalizar meu pedido:%0A%0A";
+  cart.forEach(item=>{
+    mensagem+=`• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
+  });
+  mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
+  window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`,"_blank");
 }
 
+/* ================= FILTRO DE CATEGORIAS ================= */
+function filterCategory(containerId){
+  const containers=['container_premium','container_promo','container_fio12','container_fio14',
+  'sutia','top','baby_doll','camisola','plus_size','cuecas','meias'];
+  containers.forEach(c=>{
+    const el=document.getElementById(c);
+    if(el) el.style.display='none';
+  });
+  const selected=document.getElementById(containerId);
+  if(selected) selected.style.display='block';
+}
 </script>
 
 </body>
 </html>
+
