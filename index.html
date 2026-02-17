@@ -64,6 +64,7 @@ nav{text-align:center;margin:15px;}
 <div class="categories">
   <button onclick="filterCategory('container_premium')">Conjuntos</button>
   <button onclick="filterCategory('container_fio12')">Calcinhas</button>
+  <button onclick="filterCategory('container_fio14')">Fio Premium</button>
   <button onclick="filterCategory('sutia')">Sutiã</button>
   <button onclick="filterCategory('top')">Top</button>
   <button onclick="filterCategory('baby_doll')">Baby Doll</button>
@@ -132,56 +133,46 @@ const cart=[];
 
 /* ================= CONJUNTOS 59,90 ================= */
 const premium=[
-  IMG_4861.jpeg","IMG_4862.jpeg","IMG_4863.jpeg",
-"IMG_4864.jpeg","IMG_4865.jpeg","IMG_4866.jpeg",
-"IMG_4867.jpeg","IMG_4868.jpeg","IMG_4869.jpeg",
-"IMG_4877.jpeg","IMG_4878.jpeg","IMG_4879.jpeg",
-"IMG_4880.jpeg","IMG_4881.jpeg","IMG_4882.jpeg","IMG_4883.jpeg",
-"IMG_5204.png","IMG_5205.png",
-"IMG_5644.jpeg","IMG_5645.jpeg",
-"IMG_5684.png","IMG_5685.png",
-"IMG_6045.png","IMG_6372.png","IMG_6785.jpeg","IMG_6837.png",
-"bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg",
-"dbf13977-992d-450f-b665-88729d9544c8.jpeg",
-"e6257a94-4339-406e-850d-a62f86c56d63.jpeg",
-"f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
+  "images/00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
+  "images/0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg"
+  // adicione outros modelos se necessário
 ];
 
 /* ================= CONJUNTOS 54,90 ================= */
 const promo=[
-  "IMG_4845.jpeg","IMG_4846.jpeg" 
-  // adicione os outros modelos aqui...
+  "images/IMG_4845.jpeg","images/IMG_4846.jpeg"
+  // adicione outros modelos se necessário
 ];
 
 /* ================= FIO 12 – TANGA ================= */
 const fio12=[
-  "IMG_5090.jpeg","IMG_5091.jpeg","IMG_5092.jpeg",
-  "IMG_5093.jpeg","IMG_5094.jpeg",
-  "IMG_5098.jpeg","IMG_5099.jpeg",
-  "IMG_5100.jpeg","IMG_5101.jpeg",
-  "IMG_5102.jpeg","IMG_5103.jpeg",
-  "IMG_5373.png"
+  "images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg",
+  "images/IMG_5093.jpeg","images/IMG_5094.jpeg",
+  "images/IMG_5098.jpeg","images/IMG_5099.jpeg",
+  "images/IMG_5100.jpeg","images/IMG_5101.jpeg",
+  "images/IMG_5102.jpeg","images/IMG_5103.jpeg",
+  "images/IMG_5373.png"
 ];
 
 /* ================= FIO 12 – NOVO ================= */
-const fio12_novo = [
-  "IMG_4886.jpeg","IMG_4887.jpeg","IMG_4888.jpeg","IMG_4890.jpeg","IMG_4891.jpeg",
-  "IMG_4892.jpeg","IMG_4895.jpeg","IMG_4896.jpeg","IMG_4897.jpeg","IMG_4898.jpeg",
-  "IMG_4899.jpeg","IMG_4902.jpeg","IMG_4903.jpeg","IMG_4904.jpeg","IMG_4905.jpeg",
-  "IMG_4906.jpeg","IMG_4907.jpeg","IMG_4908.jpeg","IMG_4909.jpeg","IMG_4910.jpeg",
-  "IMG_4911.jpeg","IMG_4912.jpeg","IMG_4913.jpeg","IMG_4914.jpeg","IMG_4915.jpeg",
-  "IMG_4916.jpeg","IMG_4917.jpeg","IMG_4918.jpeg","IMG_4919.jpeg","IMG_4920.jpeg",
-  "IMG_4921.jpeg","IMG_4922.jpeg","IMG_4923.jpeg",
-  "IMG_5663.png","IMG_5868.png","IMG_5886.png","IMG_5887.png","IMG_6001.png",
-  "IMG_6011.png","IMG_6309.jpeg","IMG_6696.png","IMG_6697.png","IMG_7431.jpeg",
-  "IMG_7945.jpeg"
+const fio12_novo=[
+  "images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg","images/IMG_4890.jpeg","images/IMG_4891.jpeg",
+  "images/IMG_4892.jpeg","images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg",
+  "images/IMG_4899.jpeg","images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg",
+  "images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg","images/IMG_4909.jpeg","images/IMG_4910.jpeg",
+  "images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg","images/IMG_4915.jpeg",
+  "images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg",
+  "images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg",
+  "images/IMG_5663.png","images/IMG_5868.png","images/IMG_5886.png","images/IMG_5887.png","images/IMG_6001.png",
+  "images/IMG_6011.png","images/IMG_6309.jpeg","images/IMG_6696.png","images/IMG_6697.png","images/IMG_7431.jpeg",
+  "images/IMG_7945.jpeg"
 ];
 
 /* ================= FIO 14 ================= */
 const fio14=[
-  "44af326e-0d1c-4012-9b5d-155295963713.jpeg",
-  "45718d1c-5381-4106-8fce-b26188774a14.jpeg",
-  "8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
+  "images/44af326e-0d1c-4012-9b5d-155295963713.jpeg",
+  "images/45718d1c-5381-4106-8fce-b26188774a14.jpeg",
+  "images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
 ];
 
 /* ================= FUNÇÃO DE RENDER ================= */
@@ -191,7 +182,7 @@ function render(lista,containerId,preco,label){
     container.innerHTML+=`
       <div class="card">
         ${label?'<div class="badge">'+label+'</div>':''}
-        <img src="${img}">
+        <img src="${img}" alt="Produto ${index+1}">
         <h3>Modelo ${index+1}</h3>
         <p class="price">R$ ${preco.toFixed(2)}</p>
         <select id="${containerId}-${index}">
