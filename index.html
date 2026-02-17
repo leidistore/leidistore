@@ -4,36 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leidi Andrade Store</title>
-
 <style>
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
 header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
 header h1{margin:0;font-size:32px;}
 .apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
-
-/* Barra de categorias */
-.categories{
-  text-align:center;
-  margin:15px 0;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.categories button{
-  background:#ff1493;
-  color:white;
-  border:none;
-  padding:8px 15px;
-  border-radius:20px;
-  cursor:pointer;
-  font-weight:bold;
-  transition: 0.3s;
-}
-.categories button:hover{
-  background:#ff69b4;
-}
-
+.categories{display:flex;justify-content:center;gap:10px;margin:15px 0;flex-wrap:wrap;}
+.categories button{background:#ff1493;color:white;border:none;padding:8px 15px;border-radius:20px;cursor:pointer;font-weight:bold;transition:0.3s;}
+.categories button:hover{background:#ff69b4;}
 .section-title{text-align:center;margin:35px 0 10px;font-size:22px;color:#ff1493;font-weight:bold;}
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px;}
 .card{background:white;padding:15px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);text-align:center;position:relative;}
@@ -50,7 +28,6 @@ nav{text-align:center;margin:15px;}
 .security{margin-top:10px;font-size:13px;color:#555;background:#fff0f6;padding:10px;border-radius:10px;}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -60,70 +37,39 @@ nav{text-align:center;margin:15px;}
 </div>
 </header>
 
-<!-- Barra de categorias -->
 <div class="categories">
   <button onclick="filterCategory('container_premium')">Conjuntos</button>
   <button onclick="filterCategory('container_fio12')">Calcinhas</button>
   <button onclick="filterCategory('container_fio14')">Fio Premium</button>
-  <button onclick="filterCategory('sutia')">Sutiã</button>
-  <button onclick="filterCategory('top')">Top</button>
-  <button onclick="filterCategory('baby_doll')">Baby Doll</button>
-  <button onclick="filterCategory('camisola')">Camisola</button>
-  <button onclick="filterCategory('plus_size')">Plus Size</button>
-  <button onclick="filterCategory('cuecas')">Cuecas</button>
-  <button onclick="filterCategory('meias')">Meias</button>
 </div>
 
 <nav>
 <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
 
-<!-- SEÇÕES DE PRODUTOS -->
-
-<!-- PREMIUM -->
+<!-- SEÇÕES -->
 <div id="container_premium">
   <div class="section-title">💎 Conjuntos Premium – R$ 59,90</div>
   <div class="products" id="premium"></div>
 </div>
 
-<!-- OFERTA -->
-<div id="container_promo">
-  <div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
-  <div class="products" id="promo"></div>
-</div>
-
-<!-- CALCINHAS FIO 12 -->
 <div id="container_fio12">
   <div class="section-title">💕 Calcinhas Fio – R$ 12,00</div>
   <div class="products" id="fio12"></div>
 </div>
 
-<!-- FIO 14 -->
 <div id="container_fio14">
   <div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
   <div class="products" id="fio14"></div>
 </div>
 
-<!-- CARRINHO -->
 <div id="cart" class="hidden">
 <h2>Meu Carrinho</h2>
 <div id="cartItems"></div>
 <h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
-
-<p><strong>Formas de Pagamento:</strong><br>
-• Cartão de Crédito (via link)<br>
-• Cartão de Débito (via link)<br>
-• Pix<br>
-• Pagamento na Entrega
-</p>
-
-<button class="whatsapp" onclick="finalizarCompra()">
-Finalizar Pedido pelo WhatsApp
-</button>
-
-<div class="security">
-🔒 Compra 100% segura! Seus dados estão protegidos.
-</div>
+<p><strong>Formas de Pagamento:</strong><br>• Cartão • Pix • Pagamento na Entrega</p>
+<button class="whatsapp" onclick="finalizarCompra()">Finalizar Pedido pelo WhatsApp</button>
+<div class="security">🔒 Compra 100% segura!</div>
 </div>
 
 <script>
@@ -131,51 +77,35 @@ const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
 const cart=[];
 
-/* ================= CONJUNTOS 59,90 ================= */
-const premium=[
-  "images/00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg",
-  "images/0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg"
-  // adicione outros modelos se necessário
-];
+// ====== CONJUNTOS ======
+const premium=["images/00fa80e5-c804-4024-a2d1-d147a5c365c2.jpeg","images/0b98f5b0-d403-4963-8eca-9c97bd3d758f.jpeg"];
+const promo=["images/IMG_4845.jpeg","images/IMG_4846.jpeg"];
 
-/* ================= CONJUNTOS 54,90 ================= */
-const promo=[
-  "images/IMG_4845.jpeg","images/IMG_4846.jpeg"
-  // adicione outros modelos se necessário
-];
-
-/* ================= FIO 12 – TANGA ================= */
+// ====== CALCINHAS FIO 12 ======
 const fio12=[
-  "images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg",
-  "images/IMG_5093.jpeg","images/IMG_5094.jpeg",
-  "images/IMG_5098.jpeg","images/IMG_5099.jpeg",
-  "images/IMG_5100.jpeg","images/IMG_5101.jpeg",
-  "images/IMG_5102.jpeg","images/IMG_5103.jpeg",
-  "images/IMG_5373.png"
+"images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg",
+"images/IMG_5093.jpeg","images/IMG_5094.jpeg","images/IMG_5098.jpeg","images/IMG_5099.jpeg",
+"images/IMG_5100.jpeg","images/IMG_5101.jpeg","images/IMG_5102.jpeg","images/IMG_5103.jpeg","images/IMG_5373.png",
+"images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg","images/IMG_4890.jpeg","images/IMG_4891.jpeg",
+"images/IMG_4892.jpeg","images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg",
+"images/IMG_4899.jpeg","images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg",
+"images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg","images/IMG_4909.jpeg","images/IMG_4910.jpeg",
+"images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg","images/IMG_4915.jpeg",
+"images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg",
+"images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg",
+"images/IMG_5663.png","images/IMG_5868.png","images/IMG_5886.png","images/IMG_5887.png","images/IMG_6001.png",
+"images/IMG_6011.png","images/IMG_6309.jpeg","images/IMG_6696.png","images/IMG_6697.png","images/IMG_7431.jpeg",
+"images/IMG_7945.jpeg"
 ];
 
-/* ================= FIO 12 – NOVO ================= */
-const fio12_novo=[
-  "images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg","images/IMG_4890.jpeg","images/IMG_4891.jpeg",
-  "images/IMG_4892.jpeg","images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg",
-  "images/IMG_4899.jpeg","images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg",
-  "images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg","images/IMG_4909.jpeg","images/IMG_4910.jpeg",
-  "images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg","images/IMG_4915.jpeg",
-  "images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg",
-  "images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg",
-  "images/IMG_5663.png","images/IMG_5868.png","images/IMG_5886.png","images/IMG_5887.png","images/IMG_6001.png",
-  "images/IMG_6011.png","images/IMG_6309.jpeg","images/IMG_6696.png","images/IMG_6697.png","images/IMG_7431.jpeg",
-  "images/IMG_7945.jpeg"
-];
-
-/* ================= FIO 14 ================= */
+// ====== FIO 14 ======
 const fio14=[
-  "images/44af326e-0d1c-4012-9b5d-155295963713.jpeg",
-  "images/45718d1c-5381-4106-8fce-b26188774a14.jpeg",
-  "images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
+"images/44af326e-0d1c-4012-9b5d-155295963713.jpeg",
+"images/45718d1c-5381-4106-8fce-b26188774a14.jpeg",
+"images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"
 ];
 
-/* ================= FUNÇÃO DE RENDER ================= */
+// ====== FUNÇÃO DE RENDER ======
 function render(lista,containerId,preco,label){
   const container=document.getElementById(containerId);
   lista.forEach((img,index)=>{
@@ -185,67 +115,44 @@ function render(lista,containerId,preco,label){
         <img src="${img}" alt="Produto ${index+1}">
         <h3>Modelo ${index+1}</h3>
         <p class="price">R$ ${preco.toFixed(2)}</p>
-        <select id="${containerId}-${index}">
-          ${sizes.map(s=>`<option>${s}</option>`).join("")}
-        </select><br>
+        <select id="${containerId}-${index}">${sizes.map(s=>`<option>${s}</option>`).join("")}</select><br>
         <button onclick="addToCart('${containerId}',${index},${preco})">Adicionar</button>
-      </div>
-    `;
+      </div>`;
   });
 }
 
-/* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
 render(promo,"promo",54.90,"OFERTA");
-render(fio12,"fio12",12.00,"TANGA");
-render(fio12_novo,"fio12",12.00,"NOVO");
+render(fio12,"fio12",12.00,"");
 render(fio14,"fio14",14.00,"");
 
-/* ================= FUNÇÕES DO CARRINHO ================= */
+// ====== CARRINHO ======
 function addToCart(tipo,index,preco){
   const size=document.getElementById(`${tipo}-${index}`).value;
-  cart.push({
-    name:`${tipo.toUpperCase()} Modelo ${index+1}`,
-    price:preco,
-    size:size
-  });
+  cart.push({name:`${tipo.toUpperCase()} Modelo ${index+1}`,price:preco,size:size});
   updateCart();
 }
-
 function updateCart(){
   document.getElementById("cartCount").innerText=cart.length;
   const container=document.getElementById("cartItems");
   container.innerHTML="";
   let total=0;
-  cart.forEach(item=>{
-    total+=item.price;
-    container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
-  });
+  cart.forEach(item=>{total+=item.price;container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;});
   document.getElementById("cartTotal").innerText=total.toFixed(2);
 }
-
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("hidden");
-}
-
+function toggleCart(){document.getElementById("cart").classList.toggle("hidden");}
 function finalizarCompra(){
   if(cart.length===0){alert("Carrinho vazio 💕");return;}
-  let mensagem="Olá! Quero finalizar meu pedido:%0A%0A";
-  cart.forEach(item=>{
-    mensagem+=`• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
-  });
-  mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`,"_blank");
+  let msg="Olá! Quero finalizar meu pedido:%0A%0A";
+  cart.forEach(i=>msg+=`• ${i.name} - ${i.size} - R$ ${i.price.toFixed(2)}%0A`);
+  msg+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
+  window.open(`https://wa.me/${whatsappNumber}?text=${msg}`,"_blank");
 }
 
-/* ================= FILTRO DE CATEGORIAS ================= */
+// ====== FILTRO ======
 function filterCategory(containerId){
-  const containers=['container_premium','container_promo','container_fio12','container_fio14',
-  'sutia','top','baby_doll','camisola','plus_size','cuecas','meias'];
-  containers.forEach(c=>{
-    const el=document.getElementById(c);
-    if(el) el.style.display='none';
-  });
+  const containers=['container_premium','container_fio12','container_fio14'];
+  containers.forEach(c=>{const el=document.getElementById(c); if(el) el.style.display='none';});
   const selected=document.getElementById(containerId);
   if(selected) selected.style.display='block';
 }
