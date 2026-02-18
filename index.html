@@ -63,7 +63,7 @@ nav{text-align:center;margin:15px;}
 <!-- Barra de categorias -->
 <div class="categories">
   <button onclick="filterCategory('container_premium')">Conjuntos</button>
-  <button onclick="filterCategory('container_fio12')">Calcinhas</button>
+ <button onclick="filterCategory('container_tanga12')">Calcinha Tanga</button>
   <button onclick="filterCategory('container_fio14')">Fio Premium</button>
   <button onclick="filterCategory('sutia')">Sutiã</button>
   <button onclick="filterCategory('top')">Top</button>
@@ -94,9 +94,10 @@ nav{text-align:center;margin:15px;}
 
 <!-- CALCINHAS TANGA 12 -->
 <div id="container_tanga12">
-  <div class="section-title">💕 Tanga – R$ 12,00</div>
+  <div class="section-title">💕 Calcinha Tanga – R$ 12,00</div>
   <div class="products" id="fio12"></div>
 </div>
+
 
 <div id="container_fio12_calcinha">
   <div class="section-title">✨ Calcinha Fio Novo – R$ 12,00</div>
@@ -279,13 +280,24 @@ render(fio14,"fio14",14.00,"");
 /* ================= FUNÇÕES DO CARRINHO ================= */
 function addToCart(tipo,index,preco){
   const size=document.getElementById(`${tipo}-${index}`).value;
+
+  const nomes = {
+    premium: "Conjunto Premium",
+    promo: "Conjunto Oferta",
+    fio12: "Calcinha Tanga",
+    fio12_novo: "Calcinha Fio",
+    fio14: "Calcinha Fio Premium"
+  };
+
   cart.push({
-    name:`${tipo.toUpperCase()} Modelo ${index+1}`,
+    name:`${nomes[tipo] || tipo} Modelo ${index+1}`,
     price:preco,
     size:size
   });
+
   updateCart();
 }
+
 
 function updateCart(){
   document.getElementById("cartCount").innerText=cart.length;
@@ -331,12 +343,16 @@ function filterCategory(containerId){
   const selected=document.getElementById(containerId);
   if(selected) selected.style.display='block';
 }
-</script>
-// Esconder todas as categorias ao iniciar
+  function filterCategory(containerId){
+   ...
+}
+
+// Mostrar Premium ao carregar
 document.addEventListener("DOMContentLoaded", function() {
   filterCategory('container_premium');
 });
-
+</script>
+  
 </body>
 </html>
 
