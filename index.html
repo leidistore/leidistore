@@ -92,13 +92,13 @@ nav{text-align:center;margin:15px;}
   <div class="products" id="promo"></div>
 </div>
 
-<!-- CALCINHAS FIO 12 -->
+<!-- CALCINHAS TANGA 12 -->
 <div id="container_tanga12">
   <div class="section-title">💕 Tanga – R$ 12,00</div>
   <div class="products" id="fio12"></div>
 </div>
 
-<div id="container_fio12_novo">
+<div id="container_fio12_calcinha">
   <div class="section-title">✨ Calcinha Fio Novo – R$ 12,00</div>
   <div class="products" id="fio12_novo"></div>
 </div>
@@ -272,8 +272,8 @@ function render(lista,containerId,preco,label){
 /* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
 render(promo,"promo",54.90,"OFERTA");
-render(fio12,"fio12",12.00,"TANGA");
-render(fio12_novo,"fio12_novo",12.00,"NOVO");
+render(fio12,"tanga12",12.00,"TANGA");
+render(fio12_calcinha,"fio12_novo",12.00,"CALCINHA");
 render(fio14,"fio14",14.00,"");
 
 /* ================= FUNÇÕES DO CARRINHO ================= */
@@ -315,8 +315,15 @@ function finalizarCompra(){
 
 /* ================= FILTRO DE CATEGORIAS ================= */
 function filterCategory(containerId){
-  const containers=['container_premium','container_promo','container_fio12','container_fio14',
-  'sutia','top','baby_doll','camisola','plus_size','cuecas','meias'];
+  const containersconst containers=[
+  'container_premium',
+  'container_promo',
+  'container_fio12',
+  'container_fio12_calcinha',
+  'container_fio14',
+  'sutia','top','baby_doll','camisola','plus_size','cuecas','meias'
+];
+
   containers.forEach(c=>{
     const el=document.getElementById(c);
     if(el) el.style.display='none';
