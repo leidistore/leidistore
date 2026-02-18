@@ -64,6 +64,7 @@ nav{text-align:center;margin:15px;}
 <div class="categories">
   <button onclick="filterCategory('container_premium')">Conjuntos</button>
  <button onclick="filterCategory('container_tanga12')">Calcinha Tanga</button>
+  <button onclick="filterCategory('container_fio12_calcinha')">Calcinha Fio</button>
   <button onclick="filterCategory('container_fio14')">Fio Premium</button>
   <button onclick="filterCategory('sutia')">Sutiã</button>
   <button onclick="filterCategory('top')">Top</button>
@@ -340,8 +341,13 @@ function filterCategory(containerId){
     if(el) el.style.display='none';
   });
 
-  const selected=document.getElementById(containerId);
-  if(selected) selected.style.display='block';
+  if(containerId === 'container_premium'){
+    document.getElementById('container_premium').style.display='block';
+    document.getElementById('container_promo').style.display='block';
+  } else {
+    const selected=document.getElementById(containerId);
+    if(selected) selected.style.display='block';
+  }
 }
 
 // Mostrar Premium ao carregar
