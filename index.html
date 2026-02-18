@@ -93,10 +93,16 @@ nav{text-align:center;margin:15px;}
 </div>
 
 <!-- CALCINHAS FIO 12 -->
-<div id="container_fio12">
-  <div class="section-title">💕 Calcinhas Fio – R$ 12,00</div>
+<div id="container_tanga12">
+  <div class="section-title">💕 Tanga – R$ 12,00</div>
   <div class="products" id="fio12"></div>
 </div>
+
+<div id="container_fio12_novo">
+  <div class="section-title">✨ Calcinha Fio Novo – R$ 12,00</div>
+  <div class="products" id="fio12_novo"></div>
+</div>
+
 
 <!-- FIO 14 -->
 <div id="container_fio14">
@@ -131,8 +137,6 @@ const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
 const cart=[];
 
-/* ================= CONJUNTOS 59,90 ================= */
-const premium=[
  /* ================= CONJUNTOS 59,90 ================= */
 const premium = [
   "images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
@@ -175,8 +179,6 @@ const premium = [
   "images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
 ];
 
-/* ================= CONJUNTOS 54,90 ================= */
-const=[
   /* ================= CONJUNTOS 54,90 ================= */
 const promo = [
   "images/IMG_4845.jpeg",
@@ -323,6 +325,10 @@ function filterCategory(containerId){
   if(selected) selected.style.display='block';
 }
 </script>
+// Esconder todas as categorias ao iniciar
+document.addEventListener("DOMContentLoaded", function() {
+  filterCategory('container_premium');
+});
 
 </body>
 </html>
