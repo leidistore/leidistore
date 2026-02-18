@@ -179,10 +179,18 @@ const fio14=[
 function render(lista,containerId,preco,label){
   const container=document.getElementById(containerId);
   lista.forEach((img,index)=>{
+
+    const fallback = img.startsWith("images/") ? img.replace("images/","") : img;
+
     container.innerHTML+=`
       <div class="card">
         ${label?'<div class="badge">'+label+'</div>':''}
-        <img src="${img}" alt="Produto ${index+1}">
+        <img
+          src="${img}"
+          data-fallback="${fallback}"
+          alt="Produto ${index+1}"
+          onerror="this.onerror=null; this.src=this.dataset.fallback;"
+        >
         <h3>Modelo ${index+1}</h3>
         <p class="price">R$ ${preco.toFixed(2)}</p>
         <select id="${containerId}-${index}">
@@ -193,6 +201,7 @@ function render(lista,containerId,preco,label){
     `;
   });
 }
+
 
 /* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
