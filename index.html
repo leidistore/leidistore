@@ -48,6 +48,15 @@ nav{text-align:center;margin:15px;}
 .total{font-weight:bold;color:#ff1493;margin-top:10px;}
 .whatsapp{margin-top:15px;background:#25D366;color:white;border:none;padding:12px;width:100%;border-radius:25px;font-weight:bold;}
 .security{margin-top:10px;font-size:13px;color:#555;background:#fff0f6;padding:10px;border-radius:10px;}
+  
+  #container_premium,
+#container_promo,
+#container_tanga12,
+#container_fio12_calcinha,
+#container_fio14 {
+    display: none;
+}
+
 </style>
 </head>
 
@@ -138,8 +147,8 @@ Finalizar Pedido pelo WhatsApp
 const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
 const cart=[];
-
- /* ================= CONJUNTOS 59,90 ================= */
+  
+/* ================= CONJUNTOS 59,90 ================= */
 const premium = [
   "images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
   "images/897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
@@ -165,20 +174,20 @@ const premium = [
   "images/IMG_4881.jpeg",
   "images/IMG_4882.jpeg",
   "images/IMG_4883.jpeg",
-  "images/IMG_5204.jpeg",
-  "images/IMG_5205.jpeg",
+  "images/IMG_5204.png",
+  "images/IMG_5205.png",
   "images/IMG_5644.jpeg",
   "images/IMG_5645.jpeg",
-  "images/IMG_5684.jpeg",
-  "images/IMG_5685.jpeg",
-  "images/IMG_6045.jpeg",
-  "images/IMG_6372.jpeg",
+  "images/IMG_5684.png",
+  "images/IMG_5685.png",
+  "images/IMG_6045.png",
+  "images/IMG_6372.png",
   "images/IMG_6785.jpeg",
-  "images/IMG_6837.jpeg",
+  "images/IMG_6837.png",
   "images/bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg",
   "images/dbf13977-992d-450f-b665-88729d9544c8.jpeg",
   "images/e6257a94-4339-406e-850d-a62f86c56d63.jpeg",
-  "images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg",
+  "images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
 ];
 
   /* ================= CONJUNTOS 54,90 ================= */
@@ -191,7 +200,7 @@ const promo = [
   "images/IMG_4852.jpeg",
   "images/IMG_4856.jpeg",
   "images/IMG_4857.jpeg",
-  "images/IMG_5387.jpeg",
+  "images/IMG_5387.png",
   "images/IMG_5388.jpeg",
   "images/IMG_5389.jpeg",
   "images/IMG_5390.jpeg",
@@ -199,16 +208,17 @@ const promo = [
   "images/IMG_5392.jpeg",
   "images/IMG_5393.jpeg",
   "images/IMG_5394.jpeg",
-  "images/IMG_5531.jpeg",
-  "images/IMG_5631.jpeg",
-  "images/IMG_5632.jpeg",
-  "images/IMG_5633.jpeg",
-  "images/IMG_5686.jpeg",
-  "images/IMG_5766.jpeg",
-  "images/IMG_6038.jpeg",
-  "images/IMG_6039.jpeg",
+  "images/IMG_5531.png",
+  "images/IMG_5631.png",
+  "images/IMG_5632.png",
+  "images/IMG_5633.png",
+  "images/IMG_5644.jpeg",
+  "images/IMG_5686.png",
+  "images/IMG_5766.png",
+  "images/IMG_6038.png",
+  "images/IMG_6039.png",
   "images/IMG_6318.jpeg",
-  "images/IMG_6838.jpeg",
+  "images/IMG_6838.png"
 ];
 
 /* ================= TANGA – 12 ================= */
@@ -269,7 +279,6 @@ function render(lista,containerId,preco,label){
     `;
   });
 }
-
 
 /* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
@@ -350,10 +359,10 @@ function filterCategory(containerId){
   }
 }
 
-// Mostrar Premium ao carregar
-document.addEventListener("DOMContentLoaded", function() {
-  filterCategory('container_premium');
-});
+window.onload = function(){
+   filterCategory('container_premium');
+}
+
 </script>
   
 </body>
