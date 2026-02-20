@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -17,7 +16,9 @@
 body{margin:0;font-family:'Segoe UI',sans-serif;background:var(--bg);}
 header{background:var(--rosa);color:white;text-align:center;padding:30px 20px;}
 header h1{margin:0;font-size:32px;}
+.apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
 
+/* Barra de categorias */
 .categories{
   text-align:center;
   margin:15px 10px;
@@ -26,7 +27,6 @@ header h1{margin:0;font-size:32px;}
   gap:10px;
   flex-wrap:wrap;
 }
-
 .categories button{
   background:var(--rosa);
   color:white;
@@ -35,7 +35,9 @@ header h1{margin:0;font-size:32px;}
   border-radius:20px;
   cursor:pointer;
   font-weight:bold;
+  transition: 0.3s;
 }
+.categories button:hover{ background:var(--rosa2); }
 
 .section-title{
   text-align:center;
@@ -45,11 +47,15 @@ header h1{margin:0;font-size:32px;}
   font-weight:bold;
 }
 
+/* ===== Grid responsivo (bom no celular e notebook) ===== */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
   gap:16px;
   padding:16px;
+}
+@media (min-width: 900px){
+  .products{ grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); }
 }
 
 .card{
@@ -62,7 +68,27 @@ header h1{margin:0;font-size:32px;}
 }
 
 .price{font-size:18px;color:var(--rosa);font-weight:bold;margin:8px 0;}
+.badge{position:absolute;top:10px;left:10px;background:var(--rosa);color:white;font-size:11px;padding:5px 8px;border-radius:12px;}
+select{padding:6px;border-radius:8px;border:1px solid var(--rosa2);}
+button{background:var(--rosa);color:white;border:none;padding:8px 15px;border-radius:20px;margin-top:10px;cursor:pointer;}
 
+nav{text-align:center;margin:15px;}
+nav button{cursor:pointer;}
+#cart{background:white;padding:20px;margin:20px;border-radius:15px;box-shadow:var(--shadow);}
+.hidden{display:none;}
+.total{font-weight:bold;color:var(--rosa);margin-top:10px;}
+.whatsapp{margin-top:15px;background:#25D366;color:white;border:none;padding:12px;width:100%;border-radius:25px;font-weight:bold;}
+.security{margin-top:10px;font-size:13px;color:#555;background:#fff0f6;padding:10px;border-radius:10px;}
+
+#container_premium,
+#container_promo,
+#container_tanga12,
+#container_fio12_calcinha,
+#container_fio14 {
+  display: none;
+}
+
+/* ===== Foto principal (clicável) ===== */
 .card img.main-photo{
   width:100%;
   height:260px;
@@ -70,8 +96,78 @@ header h1{margin:0;font-size:32px;}
   border-radius:12px;
   cursor:zoom-in;
 }
+@media (max-width: 480px){
+  .card img.main-photo{ height:220px; }
+}
 
-.color-options{
+/* ===== Miniaturas lado a lado ===== */
+.thumbs{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  -webkit-overflow-scrolling:touch;
+  justify-content:flex-start;
+}
+.thumbs img{
+  width:54px;
+  height:54px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+  flex:0 0 auto;
+}
+.thumbs img.active{ border-color:var(--rosa); }
+
+/* ===== Lightbox (tela cheia) ===== */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:18px;
+}
+#lightbox.open{ display:flex; }
+#lightbox .box{
+  width:min(980px, 100%);
+  max-height:90vh;
+  position:relative;
+}
+#lightbox img{
+  width:100%;
+  max-height:90vh;
+  object-fit:contain;
+  border-radius:14px;
+  background:#111;
+}
+.lb-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  color:#fff;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:18px;
+}
+#lbPrev{ left:10px; }
+#lbNext{ right:10px; }
+#lbClose{
+  position:absolute;
+  top:10px;
+  right:10px;
+  transform:none;
+  font-size:18px;
+}
+  .color-options{
   display:flex;
   justify-content:center;
   gap:6px;
@@ -90,158 +186,427 @@ header h1{margin:0;font-size:32px;}
 .color-dot.active{
   border:2px solid black;
 }
-
-#lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-
-#lightbox.open{display:flex;}
-
-#lightbox img{
-  width:90%;
-  max-height:90vh;
-  object-fit:contain;
-  border-radius:12px;
-}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>Leidi Andrade Store</h1>
+  <h1>Leidi Andrade Store</h1>
+  <div class="apresentacao">
+    ✨ Trabalhamos com peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
+  </div>
 </header>
 
+<!-- Barra de categorias REORGANIZADA -->
 <div class="categories">
-<button onclick="filterCategory('premium')">Conjuntos Premium</button>
-<button onclick="filterCategory('promo')">Conjuntos Oferta</button>
-<button onclick="filterCategory('fio12')">Calcinha Tanga</button>
-<button onclick="filterCategory('fio12_novo')">Calcinha Fio</button>
-<button onclick="filterCategory('fio14')">Fio Premium</button>
+  <button onclick="filterCategory('container_premium')">Conjuntos Premium</button>
+  <button onclick="filterCategory('container_promo')">Conjuntos Oferta</button>
+  <button onclick="filterCategory('container_tanga12')">Calcinha Tanga</button>
+  <button onclick="filterCategory('container_fio12_calcinha')">Calcinha Fio</button>
+  <button onclick="filterCategory('container_fio14')">Fio Premium</button>
+  <button onclick="filterCategory('sutia')">Sutiã</button>
+  <button onclick="filterCategory('top')">Top</button>
+  <button onclick="filterCategory('baby_doll')">Baby Doll</button>
+  <button onclick="filterCategory('camisola')">Camisola</button>
+  <button onclick="filterCategory('plus_size')">Plus Size</button>
+  <button onclick="filterCategory('cuecas')">Cuecas</button>
+  <button onclick="filterCategory('meias')">Meias</button>
 </div>
 
-<div id="premium" class="products"></div>
-<div id="promo" class="products" style="display:none;"></div>
-<div id="fio12" class="products" style="display:none;"></div>
-<div id="fio12_novo" class="products" style="display:none;"></div>
-<div id="fio14" class="products" style="display:none;"></div>
+<nav>
+  <button onclick="toggleCart()" style="cursor:pointer;">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
+</nav>
 
-<div id="lightbox" onclick="this.classList.remove('open')">
-<img id="lbImg">
+<!-- PREMIUM -->
+<div id="container_premium">
+  <div class="section-title">💎 Conjuntos Premium – R$ 59,90</div>
+  <div class="products" id="premium"></div>
+</div>
+
+<!-- OFERTA -->
+<div id="container_promo">
+  <div class="section-title">🔥 Conjuntos Oferta – R$ 54,90</div>
+  <div class="products" id="promo"></div>
+</div>
+
+<!-- CALCINHAS TANGA 12 -->
+<div id="container_tanga12">
+  <div class="section-title">💕 Calcinha Tanga – R$ 12,00</div>
+  <div class="products" id="fio12"></div>
+</div>
+
+<div id="container_fio12_calcinha">
+  <div class="section-title">✨Fio – R$ 12,00</div>
+  <div class="products" id="fio12_novo"></div>
+</div>
+
+<!-- FIO 14 -->
+<div id="container_fio14">
+  <div class="section-title">✨ Calcinhas Fio Premium – R$ 14,00</div>
+  <div class="products" id="fio14"></div>
+</div>
+
+<!-- CARRINHO -->
+<div id="cart" class="hidden">
+  <h2>Meu Carrinho</h2>
+  <div id="cartItems"></div>
+  <h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
+
+  <p><strong>Formas de Pagamento:</strong><br>
+    • Cartão de Crédito (via link)<br>
+    • Cartão de Débito (via link)<br>
+    • Pix<br>
+    • Pagamento na Entrega
+  </p>
+
+  <button class="whatsapp" onclick="finalizarCompra()">Finalizar Pedido pelo WhatsApp</button>
+
+  <div class="security">
+    🔒 Compra 100% segura! Seus dados estão protegidos.
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="box">
+    <button class="lb-btn" id="lbPrev" onclick="lbPrev(event)">‹</button>
+    <button class="lb-btn" id="lbNext" onclick="lbNext(event)">›</button>
+    <button class="lb-btn" id="lbClose" onclick="lbClose(event)">✕</button>
+    <img id="lbImg" alt="Foto ampliada">
+  </div>
 </div>
 
 <script>
+const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
+const cart=[];
 
-const coresFixas = [
-{nome:"Preto", cor:"#000000"},
-{nome:"Vermelho", cor:"#ff0000"},
-{nome:"Rosa", cor:"#ff69b4"},
-{nome:"Azul Marinho", cor:"#000080"},
-{nome:"Azul Bebê", cor:"#87cefa"},
-{nome:"Rosa Bebê", cor:"#ffb6c1"},
-{nome:"Rosa Pantera", cor:"#ff1493"},
-{nome:"Branco", cor:"#ffffff"}
+/* ================== CONJUNTOS SEPARADOS POR COR/MODELO ================== */
+
+// CONJUNTOS PREMIUM (59,90) - CADA CONJUNTO/COR É UM MODELO
+const premiumModels = [
+  ["images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg"],
+  ["images/897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"],
+
+  ["images/IMG_4853.jpeg","images/IMG_4854.jpeg","images/IMG_4855.jpeg"],
+  ["images/IMG_4858.jpeg","images/IMG_4859.jpeg","images/IMG_4860.jpeg","images/IMG_4861.jpeg","images/IMG_4862.jpeg","images/IMG_4863.jpeg","images/IMG_4864.jpeg","images/IMG_4865.jpeg","images/IMG_4866.jpeg","images/IMG_4867.jpeg","images/IMG_4868.jpeg","images/IMG_4869.jpeg"],
+
+  ["images/IMG_4877.jpeg","images/IMG_4878.jpeg","images/IMG_4879.jpeg","images/IMG_4880.jpeg","images/IMG_4881.jpeg","images/IMG_4882.jpeg","images/IMG_4883.jpeg"],
+
+  ["images/IMG_5204.png","images/IMG_5205.png"],
+
+  ["images/IMG_5684.png","images/IMG_5685.png"],
+
+  ["images/IMG_6045.png"],
+  ["images/IMG_6372.png"],
+  ["images/IMG_6785.jpeg"],
+  ["images/IMG_6837.png"],
+
+  ["images/bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg"],
+  ["images/dbf13977-992d-450f-b665-88729d9544c8.jpeg"],
+  ["images/e6257a94-4339-406e-850d-a62f86c56d63.jpeg"],
+  ["images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"]
+];
+// CONJUNTOS OFERTA (54,90) - CADA CONJUNTO/COR É UM MODELO
+const promoModels = [
+  ["images/IMG_4845.jpeg","images/IMG_4846.jpeg","images/IMG_4847.jpeg","images/IMG_4848.jpeg"],
+  ["images/IMG_4851.jpeg","images/IMG_4852.jpeg"],
+  ["images/IMG_4856.jpeg","images/IMG_4857.jpeg"],
+
+  ["images/IMG_5387.png","images/IMG_5388.jpeg","images/IMG_5389.jpeg","images/IMG_5390.jpeg","images/IMG_5391.jpeg","images/IMG_5392.jpeg","images/IMG_5393.jpeg","images/IMG_5394.jpeg"],
+
+  ["images/IMG_5531.png"],
+  ["images/IMG_5631.png","images/IMG_5632.png","images/IMG_5633.png"],
+
+  ["images/IMG_5686.png"],
+  ["images/IMG_5766.png"],
+  ["images/IMG_6038.png","images/IMG_6039.png"],
+  ["images/IMG_6318.jpeg"],
+  ["images/IMG_6838.png"]
 ];
 
+// CALCINHAS TANGA (12,00) - SEPARADAS POR COR
+const fio12Models = [
+  ["images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg","images/IMG_5093.jpeg","images/IMG_5094.jpeg"],
+  ["images/IMG_5098.jpeg","images/IMG_5099.jpeg","images/IMG_5100.jpeg","images/IMG_5101.jpeg","images/IMG_5102.jpeg","images/IMG_5103.jpeg"],
+  ["images/IMG_5373.png"]
+];
+
+// CALCINHAS FIO (12,00) - SEPARADAS POR COR/MODELO
+const fio12_novoModels = [
+  ["images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg"],
+  ["images/IMG_4890.jpeg","images/IMG_4891.jpeg","images/IMG_4892.jpeg"],
+  ["images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg","images/IMG_4899.jpeg"],
+  ["images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg","images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg"],
+  ["images/IMG_4909.jpeg","images/IMG_4910.jpeg","images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg"],
+  ["images/IMG_4915.jpeg","images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg","images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg"],
+  ["images/IMG_5663.png"],
+  ["images/IMG_5868.png"],
+  ["images/IMG_5886.png","images/IMG_5887.png"],
+  ["images/IMG_6001.png","images/IMG_6011.png"],
+  ["images/IMG_6309.jpeg"],
+  ["images/IMG_6696.png","images/IMG_6697.png"],
+  ["images/IMG_7431.jpeg"],
+  ["images/IMG_7945.jpeg"]
+];
+// FIO PREMIUM (14,00) - SEPARADAS POR COR
+const fio14Models = [
+  // Modelo 1 - Cor 1
+  ["images/44af326e-0d1c-4012-9b5d-155295963713.jpeg"],
+  // Modelo 2 - Cor 2
+  ["images/45718d1c-5381-4106-8fce-b26188774a14.jpeg"],
+  // Modelo 3 - Cor 3
+  ["images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"]
+];
+
+/* ================== FALLBACK DE IMAGEM ================== */
 function withFallback(img){
-return {
-src: img,
-fallback: img.replace("images/","")
-};
+  const fallback = img.startsWith("images/") ? img.replace("images/","") : img;
+  return { src: img, fallback };
+}
+  
+const coresFixas = [
+  {nome:"Preto", cor:"#000000"},
+  {nome:"Vermelho", cor:"#ff0000"},
+  {nome:"Rosa", cor:"#ff69b4"},
+  {nome:"Azul Marinho", cor:"#000080"},
+  {nome:"Azul Bebê", cor:"#87cefa"},
+  {nome:"Rosa Bebê", cor:"#ffb6c1"},
+  {nome:"Rosa Pantera", cor:"#ff1493"},
+  {nome:"Branco", cor:"#ffffff"}
+];
+  
+/* ================== RENDER (galeria por modelo) ================== */
+function render(modelos, containerId, preco, label){
+  const container = document.getElementById(containerId);
+  let html = "";
+
+  modelos.forEach((photosArr, index)=>{
+    const photos = photosArr.map(withFallback);
+
+    const thumbsHtml = photos.map((p, i)=>`
+      <img
+        src="${p.src}"
+        data-fallback="${p.fallback}"
+        class="${i===0 ? "active" : ""}"
+        onclick="setMainPhoto('${containerId}', ${index}, ${i})"
+      >
+    `).join("");
+
+    const coresHtml = coresFixas.map((c,i)=>`
+      <div 
+        class="color-dot ${i===0?'active':''}"
+        style="background:${c.cor}"
+        data-cor="${c.nome}"
+        onclick="selecionarCor(this)">
+      </div>
+    `).join("");
+
+    html += `
+      <div class="card">
+        ${label ? `<div class="badge">${label}</div>` : ""}
+
+        <img
+          class="main-photo"
+          id="main-${containerId}-${index}"
+          src="${photos[0].src}"
+          data-photos='${JSON.stringify(photos)}'
+          data-current="0"
+          onclick="openLightboxFromMain('main-${containerId}-${index}')"
+        >
+
+        ${photos.length > 1 ? `<div class="thumbs">${thumbsHtml}</div>` : ""}
+
+        <h3>Modelo ${index+1}</h3>
+        <p class="price">R$ ${preco.toFixed(2)}</p>
+
+        <div class="color-options">
+          ${coresHtml}
+        </div>
+
+        <select id="${containerId}-${index}">
+          ${sizes.map(s=>`<option>${s}</option>`).join("")}
+        </select><br>
+
+        <button onclick="addToCart('${containerId}',${index},${preco})">
+          Adicionar
+        </button>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
 }
 
-function render(modelos, containerId, preco){
-const container=document.getElementById(containerId);
-let html="";
+function setMainPhoto(containerId, modelIndex, photoIndex){
+  const main = document.getElementById(`main-${containerId}-${modelIndex}`);
+  const photos = JSON.parse(main.dataset.photos);
 
-modelos.forEach((photosArr,index)=>{
-const photos=photosArr.map(withFallback);
+  main.src = photos[photoIndex].src;
+  main.dataset.fallback = photos[photoIndex].fallback;
+  main.dataset.current = String(photoIndex);
 
-const coresHtml=coresFixas.map((c,i)=>`
-<div class="color-dot ${i===0?'active':''}"
-style="background:${c.cor}"
-data-cor="${c.nome}"
-onclick="selecionarCor(this)">
-</div>`).join("");
+  const thumbs = document.getElementById(`thumbs-${containerId}-${modelIndex}`);
+  if(thumbs){
+    [...thumbs.querySelectorAll("img")].forEach((img, i)=>{
+      img.classList.toggle("active", i === photoIndex);
+    });
+  }
+}
 
-html+=`
-<div class="card">
-<img class="main-photo"
-src="${photos[0].src}"
-onerror="this.onerror=null;this.src='${photos[0].fallback}'"
-onclick="openLightbox('${photos[0].src}','${photos[0].fallback}')">
+ function selecionarCor(element){
+  const dots = element.parentElement.querySelectorAll(".color-dot");
+  dots.forEach(d=>d.classList.remove("active"));
+  element.classList.add("active");
+} 
+  
+/* ================== LIGHTBOX ================== */
+let lbPhotos = [];
+let lbIndex = 0;
 
-<h3>Modelo ${index+1}</h3>
-<p class="price">R$ ${preco.toFixed(2)}</p>
+function showLbPhoto(){
+  const img = document.getElementById("lbImg");
+  const p = lbPhotos[lbIndex];
 
-<div class="color-options">
-${coresHtml}
-</div>
+  img.onerror = function(){
+    img.onerror = null;
+    if(p && p.fallback) img.src = p.fallback;
+  };
 
-<select>
-${sizes.map(s=>`<option>${s}</option>`).join("")}
-</select>
+  img.src = p.src;
+}
 
-<button>Adicionar</button>
-</div>`;
+function openLightboxFromMain(mainImgId){
+  const main = document.getElementById(mainImgId);
+  lbPhotos = JSON.parse(main.dataset.photos);
+  lbIndex = parseInt(main.dataset.current || "0", 10) || 0;
+
+  const lb = document.getElementById("lightbox");
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  showLbPhoto();
+}
+
+function closeLightbox(e){
+  if(e && e.target && e.target.id !== "lightbox") return;
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function lbClose(e){
+  e.stopPropagation();
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function lbPrev(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + lbPhotos.length) % lbPhotos.length;
+  showLbPhoto();
+}
+
+function lbNext(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % lbPhotos.length;
+  showLbPhoto();
+}
+
+document.addEventListener("keydown",(ev)=>{
+  const open = document.getElementById("lightbox").classList.contains("open");
+  if(!open) return;
+  if(ev.key === "Escape") lbClose(ev);
+  if(ev.key === "ArrowLeft") lbPrev(ev);
+  if(ev.key === "ArrowRight") lbNext(ev);
 });
+    
+/* ================== RENDERIZAR PRODUTOS ================== */
+render(premiumModels,"premium",59.90,"");
+render(promoModels,"promo",54.90,"OFERTA");
+render(fio12Models,"fio12",12.00,"TANGA");
+render(fio12_novoModels,"fio12_novo",12.00,"NOVO");
+render(fio14Models,"fio14",14.00,"");
 
-container.innerHTML=html;
+/* ================= FUNÇÕES DO CARRINHO ================= */
+function addToCart(tipo,index,preco){
+  const size=document.getElementById(`${tipo}-${index}`).value;
+
+  const card = document.getElementById(tipo).children[index];
+  const corSelecionada = card.querySelector(".color-dot.active").dataset.cor;
+
+  const nomes = {
+    premium: "Conjunto Premium",
+    promo: "Conjunto Oferta",
+    fio12: "Calcinha Tanga",
+    fio12_novo: "Calcinha Fio",
+    fio14: "Calcinha Fio Premium"
+  };
+
+  cart.push({
+    name:`${nomes[tipo] || tipo} Modelo ${index+1}`,
+    price:preco,
+    size:size,
+    color:corSelecionada
+  });
+
+  updateCart();
 }
 
-function selecionarCor(el){
-el.parentElement.querySelectorAll(".color-dot")
-.forEach(d=>d.classList.remove("active"));
-el.classList.add("active");
+function updateCart(){
+  document.getElementById("cartCount").innerText=cart.length;
+  const container=document.getElementById("cartItems");
+  container.innerHTML="";
+  let total=0;
+  cart.forEach(item=>{
+    total+=item.price;
+   container.innerHTML+=`${item.name} - ${item.color} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
+  });
+  document.getElementById("cartTotal").innerText=total.toFixed(2);
 }
 
-function openLightbox(src,fallback){
-const img=document.getElementById("lbImg");
-img.onerror=function(){img.onerror=null;img.src=fallback;}
-img.src=src;
-document.getElementById("lightbox").classList.add("open");
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("hidden");
 }
 
-function filterCategory(id){
-["premium","promo","fio12","fio12_novo","fio14"]
-.forEach(c=>document.getElementById(c).style.display="none");
-document.getElementById(id).style.display="grid";
+function finalizarCompra(){
+  if(cart.length===0){alert("Carrinho vazio 💕");return;}
+  let mensagem="Olá! Quero finalizar meu pedido:%0A%0A";
+  cart.forEach(item=>{
+    mensagem+=`• ${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}%0A`;
+  });
+  mensagem+=`%0ATotal: R$ ${document.getElementById("cartTotal").innerText}`;
+  window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`,"_blank");
 }
 
-/* ================= AGRUPAMENTO ORGANIZADO ================= */
+/* ================= FILTRO DE CATEGORIAS ================= */
+function filterCategory(containerId){
+  const containers = [
+    'container_premium',
+    'container_promo',
+    'container_tanga12',
+    'container_fio12_calcinha',
+    'container_fio14'
+  ];
 
-render([
-["images/IMG_4853.jpeg","images/IMG_4854.jpeg","images/IMG_4855.jpeg"],
-["images/IMG_4858.jpeg","images/IMG_4859.jpeg","images/IMG_4860.jpeg"],
-["images/IMG_4861.jpeg","images/IMG_4862.jpeg","images/IMG_4863.jpeg"]
-],"premium",59.90);
+  containers.forEach(c=>{
+    const el=document.getElementById(c);
+    if(el) el.style.display='none';
+  });
 
-render([
-["images/IMG_4845.jpeg","images/IMG_4846.jpeg"],
-["images/IMG_4847.jpeg","images/IMG_4848.jpeg"]
-],"promo",54.90);
+  if(containerId === 'container_premium'){
+    document.getElementById('container_premium').style.display='block';
+    document.getElementById('container_promo').style.display='block';
+  } else {
+    const selected=document.getElementById(containerId);
+    if(selected) selected.style.display='block';
+  }
+}
 
-render([
-["images/IMG_5090.jpeg","images/IMG_5091.jpeg"],
-["images/IMG_5092.jpeg","images/IMG_5093.jpeg"]
-],"fio12",12.00);
-
-render([
-["images/IMG_4886.jpeg","images/IMG_4887.jpeg"],
-["images/IMG_4888.jpeg","images/IMG_4890.jpeg"]
-],"fio12_novo",12.00);
-
-render([
-["images/44af326e-0d1c-4012-9b5d-155295963713.jpeg"],
-["images/45718d1c-5381-4106-8fce-b26188774a14.jpeg"]
-],"fio14",14.00);
-
+window.onload = function(){
+  filterCategory('container_premium');
+};
 </script>
+
 </body>
 </html>
