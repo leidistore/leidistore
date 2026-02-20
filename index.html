@@ -6,22 +6,30 @@
 <title>Leidi Andrade Store</title>
 
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#ffe6f2;}
-header{background:#ff1493;color:white;text-align:center;padding:30px 20px;}
+:root{
+  --rosa:#ff1493;
+  --rosa2:#ff69b4;
+  --bg:#ffe6f2;
+  --card:#ffffff;
+  --shadow: 0 6px 18px rgba(255,20,147,0.2);
+}
+
+body{margin:0;font-family:'Segoe UI',sans-serif;background:var(--bg);}
+header{background:var(--rosa);color:white;text-align:center;padding:30px 20px;}
 header h1{margin:0;font-size:32px;}
 .apresentacao{margin-top:10px;font-size:14px;font-style:italic;}
 
 /* Barra de categorias */
 .categories{
   text-align:center;
-  margin:15px 0;
+  margin:15px 10px;
   display:flex;
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
 }
 .categories button{
-  background:#ff1493;
+  background:var(--rosa);
   color:white;
   border:none;
   padding:8px 15px;
@@ -30,48 +38,150 @@ header h1{margin:0;font-size:32px;}
   font-weight:bold;
   transition: 0.3s;
 }
-.categories button:hover{
-  background:#ff69b4;
+.categories button:hover{ background:var(--rosa2); }
+
+.section-title{
+  text-align:center;
+  margin:35px 0 10px;
+  font-size:22px;
+  color:var(--rosa);
+  font-weight:bold;
 }
 
-.section-title{text-align:center;margin:35px 0 10px;font-size:22px;color:#ff1493;font-weight:bold;}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px;}
-.card{background:white;padding:15px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);text-align:center;position:relative;}
-.card img{width:100%;height:230px;object-fit:cover;border-radius:12px;}
-.price{font-size:18px;color:#ff1493;font-weight:bold;margin:8px 0;}
-.badge{position:absolute;top:10px;left:10px;background:#ff1493;color:white;font-size:11px;padding:5px 8px;border-radius:12px;}
-select{padding:6px;border-radius:8px;border:1px solid #ff69b4;}
-button{background:#ff1493;color:white;border:none;padding:8px 15px;border-radius:20px;margin-top:10px;cursor:pointer;}
+/* ===== Grid responsivo (bom no celular e notebook) ===== */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:16px;
+  padding:16px;
+}
+@media (min-width: 900px){
+  .products{ grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); }
+}
+
+.card{
+  background:var(--card);
+  padding:15px;
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  position:relative;
+}
+
+.price{font-size:18px;color:var(--rosa);font-weight:bold;margin:8px 0;}
+.badge{position:absolute;top:10px;left:10px;background:var(--rosa);color:white;font-size:11px;padding:5px 8px;border-radius:12px;}
+select{padding:6px;border-radius:8px;border:1px solid var(--rosa2);}
+button{background:var(--rosa);color:white;border:none;padding:8px 15px;border-radius:20px;margin-top:10px;cursor:pointer;}
+
 nav{text-align:center;margin:15px;}
-#cart{background:white;padding:20px;margin:20px;border-radius:15px;box-shadow:0 6px 18px rgba(255,20,147,0.2);}
+#cart{background:white;padding:20px;margin:20px;border-radius:15px;box-shadow:var(--shadow);}
 .hidden{display:none;}
-.total{font-weight:bold;color:#ff1493;margin-top:10px;}
+.total{font-weight:bold;color:var(--rosa);margin-top:10px;}
 .whatsapp{margin-top:15px;background:#25D366;color:white;border:none;padding:12px;width:100%;border-radius:25px;font-weight:bold;}
 .security{margin-top:10px;font-size:13px;color:#555;background:#fff0f6;padding:10px;border-radius:10px;}
-  
-#container_conjuntos
+
+#container_premium,
+#container_promo,
 #container_tanga12,
 #container_fio12_calcinha,
 #container_fio14 {
-    display: none;
+  display: none;
 }
 
+/* ===== Foto principal (clicável) ===== */
+.card img.main-photo{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:12px;
+  cursor:zoom-in;
+}
+@media (max-width: 480px){
+  .card img.main-photo{ height:220px; }
+}
+
+/* ===== Miniaturas lado a lado ===== */
+.thumbs{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  -webkit-overflow-scrolling:touch;
+  justify-content:flex-start;
+}
+.thumbs img{
+  width:54px;
+  height:54px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+  flex:0 0 auto;
+}
+.thumbs img.active{ border-color:var(--rosa); }
+
+/* ===== Lightbox (tela cheia) ===== */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:18px;
+}
+#lightbox.open{ display:flex; }
+#lightbox .box{
+  width:min(980px, 100%);
+  max-height:90vh;
+  position:relative;
+}
+#lightbox img{
+  width:100%;
+  max-height:90vh;
+  object-fit:contain;
+  border-radius:14px;
+  background:#111;
+}
+.lb-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  color:#fff;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:18px;
+}
+#lbPrev{ left:10px; }
+#lbNext{ right:10px; }
+#lbClose{
+  position:absolute;
+  top:10px;
+  right:10px;
+  transform:none;
+  font-size:18px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Leidi Andrade Store</h1>
-<div class="apresentacao">
-✨ Trabalhamos com peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
-</div>
+  <h1>Leidi Andrade Store</h1>
+  <div class="apresentacao">
+    ✨ Trabalhamos com peças selecionadas, qualidade premium e preços especiais para valorizar ainda mais sua beleza. ✨
+  </div>
 </header>
 
 <!-- Barra de categorias -->
 <div class="categories">
- <button onclick="filterCategory('container_premium')">Conjuntos 59,90</button>
-<button onclick="filterCategory('container_promo')">Conjuntos 54,90</button>
+  <button onclick="filterCategory('container_premium')">Conjuntos</button>
   <button onclick="filterCategory('container_tanga12')">Calcinha Tanga</button>
   <button onclick="filterCategory('container_fio12_calcinha')">Calcinha Fio</button>
   <button onclick="filterCategory('container_fio14')">Fio Premium</button>
@@ -85,10 +195,8 @@ nav{text-align:center;margin:15px;}
 </div>
 
 <nav>
-<button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
+  <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
-
-<!-- SEÇÕES DE PRODUTOS -->
 
 <!-- PREMIUM -->
 <div id="container_premium">
@@ -121,162 +229,287 @@ nav{text-align:center;margin:15px;}
 
 <!-- CARRINHO -->
 <div id="cart" class="hidden">
-<h2>Meu Carrinho</h2>
-<div id="cartItems"></div>
-<h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
+  <h2>Meu Carrinho</h2>
+  <div id="cartItems"></div>
+  <h3 class="total">Total: R$ <span id="cartTotal">0.00</span></h3>
 
-<p><strong>Formas de Pagamento:</strong><br>
-• Cartão de Crédito (via link)<br>
-• Cartão de Débito (via link)<br>
-• Pix<br>
-• Pagamento na Entrega
-</p>
+  <p><strong>Formas de Pagamento:</strong><br>
+    • Cartão de Crédito (via link)<br>
+    • Cartão de Débito (via link)<br>
+    • Pix<br>
+    • Pagamento na Entrega
+  </p>
 
-<button class="whatsapp" onclick="finalizarCompra()">
-Finalizar Pedido pelo WhatsApp
-</button>
+  <button class="whatsapp" onclick="finalizarCompra()">Finalizar Pedido pelo WhatsApp</button>
 
-<div class="security">
-🔒 Compra 100% segura! Seus dados estão protegidos.
+  <div class="security">
+    🔒 Compra 100% segura! Seus dados estão protegidos.
+  </div>
 </div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="box">
+    <button class="lb-btn" id="lbPrev" onclick="lbPrev(event)">‹</button>
+    <button class="lb-btn" id="lbNext" onclick="lbNext(event)">›</button>
+    <button class="lb-btn" id="lbClose" onclick="lbClose(event)">✕</button>
+    <img id="lbImg" alt="Foto ampliada">
+  </div>
 </div>
 
 <script>
 const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
 const cart=[];
-  
-/* ================= CONJUNTOS 59,90 ================= */
+
+/*
+  ✅ PADRÃO AGORA:
+  Cada "modelo" é um array de fotos.
+  Ex:
+    ["images/IMG_4853.jpeg","images/IMG_4854.jpeg","images/IMG_4855.jpeg"]
+  Se tiver só 1 foto, continua no mesmo formato:
+    ["images/IMG_4861.jpeg"]
+*/
+
+/* ================= CONJUNTOS 59,90 (PREMIUM) ================= */
 const premium = [
-  "images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
-  "images/897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
-  "images/IMG_4853.jpeg",
-  "images/IMG_4854.jpeg",
-  "images/IMG_4855.jpeg",
-  "images/IMG_4858.jpeg",
-  "images/IMG_4859.jpeg",
-  "images/IMG_4860.jpeg",
-  "images/IMG_4861.jpeg",
-  "images/IMG_4862.jpeg",
-  "images/IMG_4863.jpeg",
-  "images/IMG_4864.jpeg",
-  "images/IMG_4865.jpeg",
-  "images/IMG_4866.jpeg",
-  "images/IMG_4867.jpeg",
-  "images/IMG_4868.jpeg",
-  "images/IMG_4869.jpeg",
-  "images/IMG_4877.jpeg",
-  "images/IMG_4878.jpeg",
-  "images/IMG_4879.jpeg",
-  "images/IMG_4880.jpeg",
-  "images/IMG_4881.jpeg",
-  "images/IMG_4882.jpeg",
-  "images/IMG_4883.jpeg",
-  "images/IMG_5204.png",
-  "images/IMG_5205.png",
-  "images/IMG_5644.jpeg",
-  "images/IMG_5645.jpeg",
-  "images/IMG_5684.png",
-  "images/IMG_5685.png",
-  "images/IMG_6045.png",
-  "images/IMG_6372.png",
-  "images/IMG_6785.jpeg",
-  "images/IMG_6837.png",
-  "images/bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg",
-  "images/dbf13977-992d-450f-b665-88729d9544c8.jpeg",
-  "images/e6257a94-4339-406e-850d-a62f86c56d63.jpeg",
-  "images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
+  ["images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg"],
+  ["images/897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg"],
+
+  /* Modelo 1 (pedido): IMG_4853, 4854, 4855 */
+  ["images/IMG_4853.jpeg","images/IMG_4854.jpeg","images/IMG_4855.jpeg"],
+
+  /* Modelo 3 (pedido): IMG_4858, 4859, 4860 */
+  ["images/IMG_4858.jpeg","images/IMG_4859.jpeg","images/IMG_4860.jpeg"],
+
+  /* Resto padronizado (1 foto por modelo) */
+  ["images/IMG_4861.jpeg"],
+  ["images/IMG_4862.jpeg"],
+  ["images/IMG_4863.jpeg"],
+  ["images/IMG_4864.jpeg"],
+  ["images/IMG_4865.jpeg"],
+  ["images/IMG_4866.jpeg"],
+  ["images/IMG_4867.jpeg"],
+  ["images/IMG_4868.jpeg"],
+  ["images/IMG_4869.jpeg"],
+  ["images/IMG_4877.jpeg"],
+  ["images/IMG_4878.jpeg"],
+  ["images/IMG_4879.jpeg"],
+  ["images/IMG_4880.jpeg"],
+  ["images/IMG_4881.jpeg"],
+  ["images/IMG_4882.jpeg"],
+  ["images/IMG_4883.jpeg"],
+  ["images/IMG_5204.png"],
+  ["images/IMG_5205.png"],
+  ["images/IMG_5644.jpeg"],
+  ["images/IMG_5645.jpeg"],
+  ["images/IMG_5684.png"],
+  ["images/IMG_5685.png"],
+  ["images/IMG_6045.png"],
+  ["images/IMG_6372.png"],
+  ["images/IMG_6785.jpeg"],
+  ["images/IMG_6837.png"],
+  ["images/bbf57cac-92c6-42d5-958a-d9450ff31062.jpeg"],
+  ["images/dbf13977-992d-450f-b665-88729d9544c8.jpeg"],
+  ["images/e6257a94-4339-406e-850d-a62f86c56d63.jpeg"],
+  ["images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"]
 ];
 
-  /* ================= CONJUNTOS 54,90 ================= */
+/* ================= CONJUNTOS 54,90 (PROMO) ================= */
 const promo = [
-  "images/IMG_4845.jpeg",
-  "images/IMG_4846.jpeg",
-  "images/IMG_4847.jpeg",
-  "images/IMG_4848.jpeg",
-  "images/IMG_4851.jpeg",
-  "images/IMG_4852.jpeg",
-  "images/IMG_4856.jpeg",
-  "images/IMG_4857.jpeg",
-  "images/IMG_5387.png",
-  "images/IMG_5388.jpeg",
-  "images/IMG_5389.jpeg",
-  "images/IMG_5390.jpeg",
-  "images/IMG_5391.jpeg",
-  "images/IMG_5392.jpeg",
-  "images/IMG_5393.jpeg",
-  "images/IMG_5394.jpeg",
-  "images/IMG_5531.png",
-  "images/IMG_5631.png",
-  "images/IMG_5632.png",
-  "images/IMG_5633.png",
-  "images/IMG_5644.jpeg",
-  "images/IMG_5686.png",
-  "images/IMG_5766.png",
-  "images/IMG_6038.png",
-  "images/IMG_6039.png",
-  "images/IMG_6318.jpeg",
-  "images/IMG_6838.png"
+  ["images/IMG_4845.jpeg"],
+  ["images/IMG_4846.jpeg"],
+  ["images/IMG_4847.jpeg"],
+  ["images/IMG_4848.jpeg"],
+  ["images/IMG_4851.jpeg"],
+  ["images/IMG_4852.jpeg"],
+
+  /* Modelo 2 (pedido): IMG_4856, 4857 */
+  ["images/IMG_4856.jpeg","images/IMG_4857.jpeg"],
+
+  /* Resto padronizado (1 foto por modelo) */
+  ["images/IMG_5387.png"],
+  ["images/IMG_5388.jpeg"],
+  ["images/IMG_5389.jpeg"],
+  ["images/IMG_5390.jpeg"],
+  ["images/IMG_5391.jpeg"],
+  ["images/IMG_5392.jpeg"],
+  ["images/IMG_5393.jpeg"],
+  ["images/IMG_5394.jpeg"],
+  ["images/IMG_5531.png"],
+  ["images/IMG_5631.png"],
+  ["images/IMG_5632.png"],
+  ["images/IMG_5633.png"],
+  ["images/IMG_5644.jpeg"],
+  ["images/IMG_5686.png"],
+  ["images/IMG_5766.png"],
+  ["images/IMG_6038.png"],
+  ["images/IMG_6039.png"],
+  ["images/IMG_6318.jpeg"],
+  ["images/IMG_6838.png"]
 ];
 
 /* ================= TANGA – 12 ================= */
-const fio12=[
-  "images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg",
-  "images/IMG_5093.jpeg","images/IMG_5094.jpeg",
-  "images/IMG_5098.jpeg","images/IMG_5099.jpeg",
-  "images/IMG_5100.jpeg","images/IMG_5101.jpeg",
-  "images/IMG_5102.jpeg","images/IMG_5103.jpeg",
-  "images/IMG_5373.png",
+const fio12 = [
+  ["images/IMG_5090.jpeg"],["images/IMG_5091.jpeg"],["images/IMG_5092.jpeg"],
+  ["images/IMG_5093.jpeg"],["images/IMG_5094.jpeg"],
+  ["images/IMG_5098.jpeg"],["images/IMG_5099.jpeg"],
+  ["images/IMG_5100.jpeg"],["images/IMG_5101.jpeg"],
+  ["images/IMG_5102.jpeg"],["images/IMG_5103.jpeg"],
+  ["images/IMG_5373.png"]
 ];
 
 /* ================= CALCINHA FIO – 12 ================= */
-const fio12_novo=[
-  "images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg","images/IMG_4890.jpeg","images/IMG_4891.jpeg",
-  "images/IMG_4892.jpeg","images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg",
-  "images/IMG_4899.jpeg","images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg",
-  "images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg","images/IMG_4909.jpeg","images/IMG_4910.jpeg",
-  "images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg","images/IMG_4915.jpeg",
-  "images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg",
-  "images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg",
-  "images/IMG_5663.png","images/IMG_5868.png","images/IMG_5886.png","images/IMG_5887.png","images/IMG_6001.png",
-  "images/IMG_6011.png","images/IMG_6309.jpeg","images/IMG_6696.png","images/IMG_6697.png","images/IMG_7431.jpeg",
-  "images/IMG_7945.jpeg",
+const fio12_novo = [
+  ["images/IMG_4886.jpeg"],["images/IMG_4887.jpeg"],["images/IMG_4888.jpeg"],["images/IMG_4890.jpeg"],["images/IMG_4891.jpeg"],
+  ["images/IMG_4892.jpeg"],["images/IMG_4895.jpeg"],["images/IMG_4896.jpeg"],["images/IMG_4897.jpeg"],["images/IMG_4898.jpeg"],
+  ["images/IMG_4899.jpeg"],["images/IMG_4902.jpeg"],["images/IMG_4903.jpeg"],["images/IMG_4904.jpeg"],["images/IMG_4905.jpeg"],
+  ["images/IMG_4906.jpeg"],["images/IMG_4907.jpeg"],["images/IMG_4908.jpeg"],["images/IMG_4909.jpeg"],["images/IMG_4910.jpeg"],
+  ["images/IMG_4911.jpeg"],["images/IMG_4912.jpeg"],["images/IMG_4913.jpeg"],["images/IMG_4914.jpeg"],["images/IMG_4915.jpeg"],
+  ["images/IMG_4916.jpeg"],["images/IMG_4917.jpeg"],["images/IMG_4918.jpeg"],["images/IMG_4919.jpeg"],["images/IMG_4920.jpeg"],
+  ["images/IMG_4921.jpeg"],["images/IMG_4922.jpeg"],["images/IMG_4923.jpeg"],
+  ["images/IMG_5663.png"],["images/IMG_5868.png"],["images/IMG_5886.png"],["images/IMG_5887.png"],["images/IMG_6001.png"],
+  ["images/IMG_6011.png"],["images/IMG_6309.jpeg"],["images/IMG_6696.png"],["images/IMG_6697.png"],["images/IMG_7431.jpeg"],
+  ["images/IMG_7945.jpeg"]
 ];
 
 /* ================= FIO 14 ================= */
-const fio14=[
-  "images/44af326e-0d1c-4012-9b5d-155295963713.jpeg",
-  "images/45718d1c-5381-4106-8fce-b26188774a14.jpeg",
-  "images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg",
+const fio14 = [
+  ["images/44af326e-0d1c-4012-9b5d-155295963713.jpeg"],
+  ["images/45718d1c-5381-4106-8fce-b26188774a14.jpeg"],
+  ["images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"]
 ];
 
-/* ================= FUNÇÃO DE RENDER ================= */
-function render(lista,containerId,preco,label){
-  const container=document.getElementById(containerId);
-  lista.forEach((img,index)=>{
-
+/* ================= RENDER (com galeria por modelo) ================= */
+function withFallback(img){
   const fallback = img.startsWith("images/") ? img.replace("images/","") : img;
+  return { src: img, fallback };
+}
 
+function render(lista, containerId, preco, label){
+  const container = document.getElementById(containerId);
+  let html = "";
 
-    container.innerHTML+=`
-      <div class="card">
-        ${label?'<div class="badge">'+label+'</div>':''}
+  lista.forEach((photosArr, index)=>{
+    const photos = photosArr.map(withFallback);
+
+    const thumbsHtml = photos.map((p, i)=>`
+      <img
+        src="${p.src}"
+        data-fallback="${p.fallback}"
+        alt="Modelo ${index+1} - Foto ${i+1}"
+        class="${i===0 ? "active" : ""}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null; this.src=this.dataset.fallback;"
+        onclick="setMainPhoto('${containerId}', ${index}, ${i})"
+      >
+    `).join("");
+
+    html += `
+      <div class="card" data-model="${containerId}-${index}">
+        ${label ? `<div class="badge">${label}</div>` : ""}
+
         <img
-          src="${img}"
-          data-fallback="${fallback}"
-          alt="Produto ${index+1}"
+          class="main-photo"
+          id="main-${containerId}-${index}"
+          src="${photos[0].src}"
+          data-fallback="${photos[0].fallback}"
+          data-photos='${JSON.stringify(photos)}'
+          data-current="0"
+          alt="Modelo ${index+1}"
+          loading="lazy"
+          decoding="async"
           onerror="this.onerror=null; this.src=this.dataset.fallback;"
+          onclick="openLightboxFromMain('main-${containerId}-${index}')"
         >
+
+        ${photos.length > 1 ? `<div class="thumbs" id="thumbs-${containerId}-${index}">${thumbsHtml}</div>` : ""}
+
         <h3>Modelo ${index+1}</h3>
         <p class="price">R$ ${preco.toFixed(2)}</p>
+
         <select id="${containerId}-${index}">
           ${sizes.map(s=>`<option>${s}</option>`).join("")}
         </select><br>
+
         <button onclick="addToCart('${containerId}',${index},${preco})">Adicionar</button>
       </div>
     `;
   });
+
+  container.innerHTML = html;
 }
+
+/* ===== Trocar foto principal ao clicar na miniatura ===== */
+function setMainPhoto(containerId, modelIndex, photoIndex){
+  const mainId = `main-${containerId}-${modelIndex}`;
+  const main = document.getElementById(mainId);
+  const photos = JSON.parse(main.dataset.photos);
+
+  main.src = photos[photoIndex].src;
+  main.dataset.fallback = photos[photoIndex].fallback;
+  main.dataset.current = String(photoIndex);
+
+  const thumbs = document.getElementById(`thumbs-${containerId}-${modelIndex}`);
+  if(thumbs){
+    [...thumbs.querySelectorAll("img")].forEach((img, i)=>{
+      img.classList.toggle("active", i === photoIndex);
+    });
+  }
+}
+
+/* ===== Lightbox ===== */
+let lbPhotos = [];
+let lbIndex = 0;
+
+function openLightboxFromMain(mainImgId){
+  const main = document.getElementById(mainImgId);
+  lbPhotos = JSON.parse(main.dataset.photos);
+  lbIndex = parseInt(main.dataset.current || "0", 10) || 0;
+  openLightbox();
+}
+
+function openLightbox(){
+  const lb = document.getElementById("lightbox");
+  const img = document.getElementById("lbImg");
+  img.src = lbPhotos[lbIndex].src;
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(e){
+  if(e && e.target && e.target.id !== "lightbox") return;
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function lbClose(e){
+  e.stopPropagation();
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function lbPrev(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + lbPhotos.length) % lbPhotos.length;
+  document.getElementById("lbImg").src = lbPhotos[lbIndex].src;
+}
+
+function lbNext(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % lbPhotos.length;
+  document.getElementById("lbImg").src = lbPhotos[lbIndex].src;
+}
+
+/* Teclado (esc/←/→) */
+document.addEventListener("keydown",(ev)=>{
+  const open = document.getElementById("lightbox").classList.contains("open");
+  if(!open) return;
+  if(ev.key === "Escape") lbClose(ev);
+  if(ev.key === "ArrowLeft") lbPrev(ev);
+  if(ev.key === "ArrowRight") lbNext(ev);
+});
 
 /* ================= RENDERIZAR PRODUTOS ================= */
 render(premium,"premium",59.90,"");
@@ -305,7 +538,6 @@ function addToCart(tipo,index,preco){
 
   updateCart();
 }
-
 
 function updateCart(){
   document.getElementById("cartCount").innerText=cart.length;
@@ -358,11 +590,13 @@ function filterCategory(containerId){
 }
 
 window.onload = function(){
-   filterCategory('container_premium');
-}
-
+  filterCategory('container_premium');
+};
 </script>
-  
+
 </body>
 </html>
+
+
+
 
