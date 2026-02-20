@@ -247,6 +247,12 @@ nav button{cursor:pointer;}
   <div class="products" id="fio14"></div>
 </div>
 
+<!-- BABY DOLL -->
+<div id="container_baby_doll">
+  <div class="section-title">💖 Baby Doll – R$ 54,90</div>
+  <div class="products" id="baby_doll"></div>
+</div>  
+  
 <!-- CARRINHO -->
 <div id="cart" class="hidden">
   <h2>Meu Carrinho</h2>
@@ -527,6 +533,37 @@ const fio14Models = [
   ]
 
 ];
+  const baby_dollModels = [
+
+  [
+    "7b91d59f-c4f0-4728-91eb-b94ef10b059f.jpeg",
+    "86a76589-330f-4002-a34e-9de3f31cc002.jpeg",
+    "b13d1312-391d-463c-a426-39c6d751e1c1.jpeg",
+    "c67c91b2-e331-49fa-9f97-9c7856b5087a.jpeg",
+    "fcb3d00f-4584-47b4-8864-0c8917b8079c.jpeg"
+  ],
+
+  [
+    "IMG_7731.png",
+    "IMG_7732.png",
+    "IMG_7733.png"
+  ],
+
+  [
+    "IMG_7987.jpeg",
+    "IMG_7988.jpeg",
+    "IMG_7989.jpeg",
+    "IMG_7991.jpeg",
+    "IMG_7993.jpeg",
+    "IMG_7994.jpeg",
+    "IMG_7996.jpeg",
+    "IMG_7997.jpeg",
+    "IMG_7998.jpeg",
+    "IMG_7999.jpeg",
+    "IMG_8001.jpeg"
+  ]
+
+];
   
 /* ================== FALLBACK DE IMAGEM ================== */
 function withFallback(img){
@@ -695,6 +732,7 @@ render(promoModels,"promo",54.90,"OFERTA");
 render(fio12Models,"fio12",12.00,"TANGA");
 render(fio12_novoModels,"fio12_novo",12.00,"NOVO");
 render(fio14Models,"fio14",14.00,"");
+render(baby_dollModels,"baby_doll",54.90,"");
 
 /* ================= FUNÇÕES DO CARRINHO ================= */
 function addToCart(tipo,index,preco){
