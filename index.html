@@ -74,6 +74,7 @@ select{padding:6px;border-radius:8px;border:1px solid var(--rosa2);}
 button{background:var(--rosa);color:white;border:none;padding:8px 15px;border-radius:20px;margin-top:10px;cursor:pointer;}
 
 nav{text-align:center;margin:15px;}
+nav button{cursor:pointer;}
 #cart{background:white;padding:20px;margin:20px;border-radius:15px;box-shadow:var(--shadow);}
 .hidden{display:none;}
 .total{font-weight:bold;color:var(--rosa);margin-top:10px;}
@@ -179,9 +180,10 @@ nav{text-align:center;margin:15px;}
   </div>
 </header>
 
-<!-- Barra de categorias -->
+<!-- Barra de categorias REORGANIZADA -->
 <div class="categories">
-  <button onclick="filterCategory('container_premium')">Conjuntos</button>
+  <button onclick="filterCategory('container_premium')">Conjuntos Premium</button>
+  <button onclick="filterCategory('container_promo')">Conjuntos Oferta</button>
   <button onclick="filterCategory('container_tanga12')">Calcinha Tanga</button>
   <button onclick="filterCategory('container_fio12_calcinha')">Calcinha Fio</button>
   <button onclick="filterCategory('container_fio14')">Fio Premium</button>
@@ -195,7 +197,7 @@ nav{text-align:center;margin:15px;}
 </div>
 
 <nav>
-  <button onclick="toggleCart()">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
+  <button onclick="toggleCart()" style="cursor:pointer;">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
 </nav>
 
 <!-- PREMIUM -->
@@ -262,9 +264,9 @@ const whatsappNumber="5547996374475";
 const sizes=["P","M","G","GG"];
 const cart=[];
 
-/* ================== LISTAS ORIGINAIS (flat) ================== */
-/* (mantive exatamente o seu conteúdo; a organização por modelo será automática) */
+/* ================== LISTAS DE PRODUTOS ================== */
 
+// CONJUNTOS PREMIUM (59,90) - SEM FOTO DUPLICADA
 const premiumFlat = [
   "images/46d5c914-6ab8-41e6-9244-dbbaa2659e4e.jpeg",
   "images/897f0445-53fb-4ca2-bfb8-9566238f339f.jpeg",
@@ -292,8 +294,6 @@ const premiumFlat = [
   "images/IMG_4883.jpeg",
   "images/IMG_5204.png",
   "images/IMG_5205.png",
-  "images/IMG_5644.jpeg",
-  "images/IMG_5645.jpeg",
   "images/IMG_5684.png",
   "images/IMG_5685.png",
   "images/IMG_6045.png",
@@ -306,6 +306,7 @@ const premiumFlat = [
   "images/f6b7840a-c27c-46bf-b169-460d0e0932d0.jpeg"
 ];
 
+// CONJUNTOS OFERTA (54,90) - SEM FOTOS DUPLICADAS 
 const promoFlat = [
   "images/IMG_4845.jpeg",
   "images/IMG_4846.jpeg",
@@ -327,7 +328,6 @@ const promoFlat = [
   "images/IMG_5631.png",
   "images/IMG_5632.png",
   "images/IMG_5633.png",
-  "images/IMG_5644.jpeg",
   "images/IMG_5686.png",
   "images/IMG_5766.png",
   "images/IMG_6038.png",
@@ -336,46 +336,139 @@ const promoFlat = [
   "images/IMG_6838.png"
 ];
 
-const fio12Flat = [
-  "images/IMG_5090.jpeg","images/IMG_5091.jpeg","images/IMG_5092.jpeg",
-  "images/IMG_5093.jpeg","images/IMG_5094.jpeg",
-  "images/IMG_5098.jpeg","images/IMG_5099.jpeg",
-  "images/IMG_5100.jpeg","images/IMG_5101.jpeg",
-  "images/IMG_5102.jpeg","images/IMG_5103.jpeg",
-  "images/IMG_5373.png",
+// CALCINHAS TANGA (12,00) - AGRUPADAS POR COR
+const fio12Models = [
+  // Modelo 1 - Rosa
+  ["images/IMG_5090.jpeg"],
+  // Modelo 2 - Vermelha
+  ["images/IMG_5091.jpeg"],
+  // Modelo 3 - Branca
+  ["images/IMG_5092.jpeg"],
+  // Modelo 4 - Preta
+  ["images/IMG_5093.jpeg"],
+  // Modelo 5 - Verde
+  ["images/IMG_5094.jpeg"],
+  // Modelo 6 - Nude
+  ["images/IMG_5098.jpeg"],
+  // Modelo 7 - Azul
+  ["images/IMG_5099.jpeg"],
+  // Modelo 8 - Amarela
+  ["images/IMG_5100.jpeg"],
+  // Modelo 9 - Laranja
+  ["images/IMG_5101.jpeg"],
+  // Modelo 10 - Roxa
+  ["images/IMG_5102.jpeg"],
+  // Modelo 11 - Estampada
+  ["images/IMG_5103.jpeg"],
+  // Modelo 12 - Especial
+  ["images/IMG_5373.png"]
 ];
 
-const fio12_novoFlat = [
-  "images/IMG_4886.jpeg","images/IMG_4887.jpeg","images/IMG_4888.jpeg","images/IMG_4890.jpeg","images/IMG_4891.jpeg",
-  "images/IMG_4892.jpeg","images/IMG_4895.jpeg","images/IMG_4896.jpeg","images/IMG_4897.jpeg","images/IMG_4898.jpeg",
-  "images/IMG_4899.jpeg","images/IMG_4902.jpeg","images/IMG_4903.jpeg","images/IMG_4904.jpeg","images/IMG_4905.jpeg",
-  "images/IMG_4906.jpeg","images/IMG_4907.jpeg","images/IMG_4908.jpeg","images/IMG_4909.jpeg","images/IMG_4910.jpeg",
-  "images/IMG_4911.jpeg","images/IMG_4912.jpeg","images/IMG_4913.jpeg","images/IMG_4914.jpeg","images/IMG_4915.jpeg",
-  "images/IMG_4916.jpeg","images/IMG_4917.jpeg","images/IMG_4918.jpeg","images/IMG_4919.jpeg","images/IMG_4920.jpeg",
-  "images/IMG_4921.jpeg","images/IMG_4922.jpeg","images/IMG_4923.jpeg",
-  "images/IMG_5663.png","images/IMG_5868.png","images/IMG_5886.png","images/IMG_5887.png","images/IMG_6001.png",
-  "images/IMG_6011.png","images/IMG_6309.jpeg","images/IMG_6696.png","images/IMG_6697.png","images/IMG_7431.jpeg",
-  "images/IMG_7945.jpeg",
+// CALCINHAS FIO (12,00) - AGRUPADAS POR COR/MODELO
+const fio12_novoModels = [
+  // Modelo 1 - Preta
+  ["images/IMG_4886.jpeg"],
+  // Modelo 2 - Branca
+  ["images/IMG_4887.jpeg"],
+  // Modelo 3 - Vermelha
+  ["images/IMG_4888.jpeg"],
+  // Modelo 4 - Rosa Claro
+  ["images/IMG_4890.jpeg"],
+  // Modelo 5 - Rosa Escuro
+  ["images/IMG_4891.jpeg"],
+  // Modelo 6 - Nude
+  ["images/IMG_4892.jpeg"],
+  // Modelo 7 - Azul
+  ["images/IMG_4895.jpeg"],
+  // Modelo 8 - Verde
+  ["images/IMG_4896.jpeg"],
+  // Modelo 9 - Amarela
+  ["images/IMG_4897.jpeg"],
+  // Modelo 10 - Roxa
+  ["images/IMG_4898.jpeg"],
+  // Modelo 11 - Laranja
+  ["images/IMG_4899.jpeg"],
+  // Modelo 12 - Preta Renda
+  ["images/IMG_4902.jpeg"],
+  // Modelo 13 - Branca Renda
+  ["images/IMG_4903.jpeg"],
+  // Modelo 14 - Vermelha Renda
+  ["images/IMG_4904.jpeg"],
+  // Modelo 15 - Rosa Renda
+  ["images/IMG_4905.jpeg"],
+  // Modelo 16 - Azul Renda
+  ["images/IMG_4906.jpeg"],
+  // Modelo 17 - Verde Renda
+  ["images/IMG_4907.jpeg"],
+  // Modelo 18 - Nude Renda
+  ["images/IMG_4908.jpeg"],
+  // Modelo 19 - Estampada 1
+  ["images/IMG_4909.jpeg"],
+  // Modelo 20 - Estampada 2
+  ["images/IMG_4910.jpeg"],
+  // Modelo 21 - Estampada 3
+  ["images/IMG_4911.jpeg"],
+  // Modelo 22 - Estampada 4
+  ["images/IMG_4912.jpeg"],
+  // Modelo 23 - Estampada 5
+  ["images/IMG_4913.jpeg"],
+  // Modelo 24 - Estampada 6
+  ["images/IMG_4914.jpeg"],
+  // Modelo 25 - Especial 1
+  ["images/IMG_4915.jpeg"],
+  // Modelo 26 - Especial 2
+  ["images/IMG_4916.jpeg"],
+  // Modelo 27 - Especial 3
+  ["images/IMG_4917.jpeg"],
+  // Modelo 28 - Especial 4
+  ["images/IMG_4918.jpeg"],
+  // Modelo 29 - Especial 5
+  ["images/IMG_4919.jpeg"],
+  // Modelo 30 - Especial 6
+  ["images/IMG_4920.jpeg"],
+  // Modelo 31 - Especial 7
+  ["images/IMG_4921.jpeg"],
+  // Modelo 32 - Especial 8
+  ["images/IMG_4922.jpeg"],
+  // Modelo 33 - Especial 9
+  ["images/IMG_4923.jpeg"],
+  // Modelo 34 - Premium 1
+  ["images/IMG_5663.png"],
+  // Modelo 35 - Premium 2
+  ["images/IMG_5868.png"],
+  // Modelo 36 - Premium 3
+  ["images/IMG_5886.png"],
+  // Modelo 37 - Premium 4
+  ["images/IMG_5887.png"],
+  // Modelo 38 - Premium 5
+  ["images/IMG_6001.png"],
+  // Modelo 39 - Premium 6
+  ["images/IMG_6011.png"],
+  // Modelo 40 - Premium 7
+  ["images/IMG_6309.jpeg"],
+  // Modelo 41 - Premium 8
+  ["images/IMG_6696.png"],
+  // Modelo 42 - Premium 9
+  ["images/IMG_6697.png"],
+  // Modelo 43 - Premium 10
+  ["images/IMG_7431.jpeg"],
+  // Modelo 44 - Premium 11
+  ["images/IMG_7945.jpeg"]
 ];
 
-const fio14Flat = [
-  "images/44af326e-0d1c-4012-9b5d-155295963713.jpeg",
-  "images/45718d1c-5381-4106-8fce-b26188774a14.jpeg",
-  "images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg",
+// FIO PREMIUM (14,00) - SEPARADAS POR COR
+const fio14Models = [
+  // Modelo 1 - Cor 1
+  ["images/44af326e-0d1c-4012-9b5d-155295963713.jpeg"],
+  // Modelo 2 - Cor 2
+  ["images/45718d1c-5381-4106-8fce-b26188774a14.jpeg"],
+  // Modelo 3 - Cor 3
+  ["images/8947409a-83bb-4111-95e5-3e79b845157c.jpeg"]
 ];
 
-/* ================== AGRUPAR AUTOMATICAMENTE POR SEQUÊNCIA ==================
-   Regra: quando encontrar IMG_#### e o próximo é IMG_(####+1) (mesmo prefixo),
-   agrupa no mesmo "Modelo". Assim:
-   - Modelo 1: 4853,4854,4855
-   - Modelo 2: 4856,4857
-   - Modelo 3: 4858,4859,4860
-   E essas fotos NÃO aparecem duplicadas depois.
-*/
+/* ================== AGRUPAR AUTOMATICAMENTE POR SEQUÊNCIA (PARA CONJUNTOS) ================== */
 function parseImgNumber(path){
-  // pega só o nome do arquivo
   const file = String(path).split("/").pop();
-  // aceita IMG_4853.jpeg / IMG_4853.png etc
   const m = file.match(/^(IMG_)(\d+)\.(jpg|jpeg|png|webp)$/i);
   if(!m) return null;
   return { prefix: m[1], num: parseInt(m[2], 10) };
@@ -387,17 +480,14 @@ function groupBySequence(flatList){
     const cur = flatList[i];
     const curInfo = parseImgNumber(cur);
 
-    // se não é IMG_####, vira modelo único
     if(!curInfo){
       grouped.push([cur]);
       continue;
     }
 
-    // inicia grupo com a atual
     const group = [cur];
     let lastNum = curInfo.num;
 
-    // puxa sequência (4853,4854,4855...)
     while(i+1 < flatList.length){
       const next = flatList[i+1];
       const nextInfo = parseImgNumber(next);
@@ -405,7 +495,7 @@ function groupBySequence(flatList){
       if(nextInfo.prefix === curInfo.prefix && nextInfo.num === lastNum + 1){
         group.push(next);
         lastNum = nextInfo.num;
-        i++; // consumiu o próximo
+        i++;
       } else {
         break;
       }
@@ -416,7 +506,7 @@ function groupBySequence(flatList){
   return grouped;
 }
 
-/* ================== FALLBACK DE IMAGEM (CARD + LIGHTBOX) ================== */
+/* ================== FALLBACK DE IMAGEM ================== */
 function withFallback(img){
   const fallback = img.startsWith("images/") ? img.replace("images/","") : img;
   return { src: img, fallback };
@@ -494,7 +584,7 @@ function setMainPhoto(containerId, modelIndex, photoIndex){
   }
 }
 
-/* ================== LIGHTBOX (AGORA COM FALLBACK) ================== */
+/* ================== LIGHTBOX ================== */
 let lbPhotos = [];
 let lbIndex = 0;
 
@@ -502,7 +592,6 @@ function showLbPhoto(){
   const img = document.getElementById("lbImg");
   const p = lbPhotos[lbIndex];
 
-  // tenta src e, se falhar, troca para fallback
   img.onerror = function(){
     img.onerror = null;
     if(p && p.fallback) img.src = p.fallback;
@@ -555,12 +644,15 @@ document.addEventListener("keydown",(ev)=>{
   if(ev.key === "ArrowRight") lbNext(ev);
 });
 
-/* ================== RENDERIZAR PRODUTOS (COM AGRUPAMENTO) ================== */
+/* ================== RENDERIZAR PRODUTOS ================== */
+// Conjuntos com agrupamento automático por sequência
 const premium = groupBySequence(premiumFlat);
 const promo = groupBySequence(promoFlat);
-const fio12 = groupBySequence(fio12Flat);
-const fio12_novo = groupBySequence(fio12_novoFlat);
-const fio14 = groupBySequence(fio14Flat);
+
+// Calcinhas separadas por cor (cada uma é um modelo)
+const fio12 = fio12Models;
+const fio12_novo = fio12_novoModels;
+const fio14 = fio14Models;
 
 render(premium,"premium",59.90,"");
 render(promo,"promo",54.90,"OFERTA");
@@ -646,7 +738,3 @@ window.onload = function(){
 
 </body>
 </html>
-
-
-
-
