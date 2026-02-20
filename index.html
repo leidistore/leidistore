@@ -168,6 +168,25 @@ nav button{cursor:pointer;}
   transform:none;
   font-size:18px;
 }
+  .color-options{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  flex-wrap:wrap;
+  margin:10px 0;
+}
+
+.color-dot{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.color-dot.active{
+  border:2px solid black;
+}
 </style>
 </head>
 
@@ -533,7 +552,18 @@ function withFallback(img){
   const fallback = img.startsWith("images/") ? img.replace("images/","") : img;
   return { src: img, fallback };
 }
-
+  
+const coresFixas = [
+  {nome:"Preto", cor:"#000000"},
+  {nome:"Vermelho", cor:"#ff0000"},
+  {nome:"Rosa", cor:"#ff69b4"},
+  {nome:"Azul Marinho", cor:"#000080"},
+  {nome:"Azul Bebê", cor:"#87cefa"},
+  {nome:"Rosa Bebê", cor:"#ffb6c1"},
+  {nome:"Rosa Pantera", cor:"#ff1493"},
+  {nome:"Branco", cor:"#ffffff"}
+];
+  
 /* ================== RENDER (galeria por modelo) ================== */
 function render(modelos, containerId, preco, label){
   const container = document.getElementById(containerId);
@@ -546,13 +576,18 @@ function render(modelos, containerId, preco, label){
       <img
         src="${p.src}"
         data-fallback="${p.fallback}"
-        alt="Modelo ${index+1} - Foto ${i+1}"
         class="${i===0 ? "active" : ""}"
-        loading="lazy"
-        decoding="async"
-        onerror="this.onerror=null; this.src=this.dataset.fallback;"
         onclick="setMainPhoto('${containerId}', ${index}, ${i})"
       >
+    `).join("");
+
+    const coresHtml = coresFixas.map((c,i)=>`
+      <div 
+        class="color-dot ${i===0?'active':''}"
+        style="background:${c.cor}"
+        data-cor="${c.nome}"
+        onclick="selecionarCor(this)">
+      </div>
     `).join("");
 
     html += `
@@ -563,26 +598,27 @@ function render(modelos, containerId, preco, label){
           class="main-photo"
           id="main-${containerId}-${index}"
           src="${photos[0].src}"
-          data-fallback="${photos[0].fallback}"
           data-photos='${JSON.stringify(photos)}'
           data-current="0"
-          alt="Modelo ${index+1}"
-          loading="lazy"
-          decoding="async"
-          onerror="this.onerror=null; this.src=this.dataset.fallback;"
           onclick="openLightboxFromMain('main-${containerId}-${index}')"
         >
 
-        ${photos.length > 1 ? `<div class="thumbs" id="thumbs-${containerId}-${index}">${thumbsHtml}</div>` : ""}
+        ${photos.length > 1 ? `<div class="thumbs">${thumbsHtml}</div>` : ""}
 
         <h3>Modelo ${index+1}</h3>
         <p class="price">R$ ${preco.toFixed(2)}</p>
+
+        <div class="color-options">
+          ${coresHtml}
+        </div>
 
         <select id="${containerId}-${index}">
           ${sizes.map(s=>`<option>${s}</option>`).join("")}
         </select><br>
 
-        <button onclick="addToCart('${containerId}',${index},${preco})">Adicionar</button>
+        <button onclick="addToCart('${containerId}',${index},${preco})">
+          Adicionar
+        </button>
       </div>
     `;
   });
@@ -606,6 +642,12 @@ function setMainPhoto(containerId, modelIndex, photoIndex){
   }
 }
 
+ function selecionarCor(element){
+  const dots = element.parentElement.querySelectorAll(".color-dot");
+  dots.forEach(d=>d.classList.remove("active"));
+  element.classList.add("active");
+} 
+  
 /* ================== LIGHTBOX ================== */
 let lbPhotos = [];
 let lbIndex = 0;
@@ -665,7 +707,7 @@ document.addEventListener("keydown",(ev)=>{
   if(ev.key === "ArrowLeft") lbPrev(ev);
   if(ev.key === "ArrowRight") lbNext(ev);
 });
-
+    
 /* ================== RENDERIZAR PRODUTOS ================== */
 render(premiumModels,"premium",59.90,"");
 render(promoModels,"promo",54.90,"OFERTA");
@@ -676,6 +718,9 @@ render(fio14Models,"fio14",14.00,"");
 /* ================= FUNÇÕES DO CARRINHO ================= */
 function addToCart(tipo,index,preco){
   const size=document.getElementById(`${tipo}-${index}`).value;
+
+  const card = document.getElementById(tipo).children[index];
+  const corSelecionada = card.querySelector(".color-dot.active").dataset.cor;
 
   const nomes = {
     premium: "Conjunto Premium",
@@ -688,7 +733,8 @@ function addToCart(tipo,index,preco){
   cart.push({
     name:`${nomes[tipo] || tipo} Modelo ${index+1}`,
     price:preco,
-    size:size
+    size:size,
+    color:corSelecionada
   });
 
   updateCart();
@@ -701,7 +747,7 @@ function updateCart(){
   let total=0;
   cart.forEach(item=>{
     total+=item.price;
-    container.innerHTML+=`${item.name} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
+   container.innerHTML+=`${item.name} - ${item.color} - ${item.size} - R$ ${item.price.toFixed(2)}<br>`;
   });
   document.getElementById("cartTotal").innerText=total.toFixed(2);
 }
