@@ -478,7 +478,8 @@ const fio14Models = [
   ]
 
 ];
-  const baby_dollModels = [
+  // BABY_DOLL (54,90) - CADA CONJUNTO/COR É UM MODELO
+   const baby_dollModels = [
 
   [
     "7b91d59f-c4f0-4728-91eb-b94ef10b059f.jpeg",
@@ -691,9 +692,9 @@ function addToCart(tipo,index,preco){
     promo: "Conjunto Oferta",
     fio12: "Calcinha Tanga",
     fio12_novo: "Calcinha Fio",
-    fio14: "Calcinha Fio Premium"
-    baby_doll: "Baby Doll" 
-  };
+    fio14: "Calcinha Fio Premium",
+    baby_doll: "Baby Doll"
+};;
 
   cart.push({
     name:`${nomes[tipo] || tipo} Modelo ${index+1}`,
@@ -748,8 +749,7 @@ function filterCategory(containerId){
   });
 
   if(containerId === 'container_premium'){
-    document.getElementById('container_premium').style.display='block';
-    document.getElementById('container_promo').style.display='block';
+    document.getElementById(containerId).style.display='block';
   } else {
     const selected=document.getElementById(containerId);
     if(selected) selected.style.display='block';
